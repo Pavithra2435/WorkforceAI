@@ -1,0 +1,71 @@
+employee_id,exit_date,exit_type,exit_reason,department,rehire_eligible
+E0002,2026-03-23,Voluntary,Better opportunity,IT,Yes
+E0007,2025-08-22,Voluntary,Role mismatch,Operations,Yes
+E0025,2026-07-22,Voluntary,Career change,IT,No
+E0043,2026-05-19,Voluntary,Relocation,Customer Support,No
+E0045,2026-01-09,Voluntary,Performance-related,Sales,Yes
+E0048,2025-02-09,Voluntary,Personal reasons,Customer Support,Yes
+E0064,2025-10-20,Voluntary,Performance-related,Finance,No
+E0069,2026-02-08,Voluntary,Better opportunity,Marketing,Yes
+E0083,2026-02-21,Involuntary,Career change,Marketing,No
+E0084,2026-09-16,Voluntary,Career change,Sales,No
+E0107,2026-02-22,Voluntary,Compensation,Finance,Yes
+E0117,2026-08-29,Voluntary,Better opportunity,Customer Support,No
+E0127,2026-01-09,Voluntary,Career change,Finance,No
+E0128,2026-07-31,Voluntary,Career change,HR,Yes
+E0137,2026-08-19,Voluntary,Performance-related,HR,No
+E0150,2026-01-17,Involuntary,Role mismatch,IT,Yes
+E0162,2025-08-23,Voluntary,Performance-related,Customer Support,Yes
+E0169,2026-03-29,Voluntary,Role mismatch,HR,Yes
+E0178,2026-05-07,Voluntary,Career change,Marketing,No
+E0179,2025-04-14,Involuntary,Role mismatch,HR,No
+E0180,2026-01-21,Voluntary,Compensation,Customer Support,Yes
+E0184,2026-05-08,Voluntary,Compensation,Customer Support,No
+E0190,2025-09-02,Voluntary,Relocation,HR,Yes
+E0192,2025-12-28,Voluntary,Compensation,Finance,No
+E0205,2026-08-04,Voluntary,Compensation,IT,Yes
+E0209,2026-09-07,Voluntary,Personal reasons,HR,No
+E0214,2026-03-15,Voluntary,Compensation,Customer Support,No
+E0217,2025-11-07,Involuntary,Personal reasons,HR,Yes
+E0226,2025-10-16,Voluntary,Career change,Marketing,No
+E0231,2025-12-08,Voluntary,Relocation,IT,No
+E0253,2026-08-27,Voluntary,Role mismatch,Finance,No
+E0268,2026-09-01,Voluntary,Better opportunity,HR,No
+E0286,2026-06-02,Voluntary,Career change,IT,No
+E0300,2026-01-27,Voluntary,Performance-related,IT,No
+E0306,2025-01-07,Voluntary,Performance-related,Sales,No
+E0310,2026-04-18,Voluntary,Career change,Operations,No
+E0315,2025-04-11,Voluntary,Performance-related,Customer Support,No
+E0330,2026-03-01,Voluntary,Personal reasons,Sales,Yes
+E0339,2025-12-09,Voluntary,Career change,Sales,Yes
+E0340,2026-09-02,Involuntary,Career change,Finance,Yes
+E0346,2026-05-04,Voluntary,Better opportunity,Operations,Yes
+E0348,2025-12-23,Voluntary,Role mismatch,IT,No
+E0350,2026-04-08,Voluntary,Personal reasons,Customer Support,No
+E0353,2026-10-25,Voluntary,Career change,Finance,Yes
+E0359,2026-03-11,Voluntary,Career change,Operations,No
+E0361,2025-10-03,Involuntary,Role mismatch,HR,Yes
+E0364,2025-01-13,Voluntary,Performance-related,HR,Yes
+E0372,2025-08-26,Voluntary,Performance-related,HR,No
+E0375,2026-05-20,Involuntary,Role mismatch,Finance,Yes
+E0380,2025-03-05,Involuntary,Relocation,Customer Support,Yes
+E0382,2026-09-24,Voluntary,Role mismatch,Customer Support,No
+E0388,2026-04-29,Voluntary,Career change,IT,Yes
+E0392,2026-10-08,Voluntary,Career change,IT,No
+E0399,2025-12-22,Voluntary,Personal reasons,Finance,Yes
+E0407,2026-02-07,Voluntary,Career change,Finance,No
+E0408,2026-07-22,Voluntary,Role mismatch,IT,No
+E0429,2025-01-29,Voluntary,Performance-related,Operations,No
+E0437,2026-09-11,Involuntary,Career change,Sales,Yes
+E0451,2025-08-18,Voluntary,Personal reasons,HR,No
+E0460,2025-09-20,Voluntary,Personal reasons,Operations,No
+E0462,2025-05-22,Involuntary,Relocation,IT,No
+E0465,2026-08-28,Involuntary,Compensation,Customer Support,No
+E0467,2025-09-25,Involuntary,Relocation,Sales,Yes
+E0469,2026-10-16,Voluntary,Career change,HR,No
+E0471,2026-08-27,Voluntary,Performance-related,Sales,No
+E0478,2026-06-11,Voluntary,Compensation,IT,No
+E0479,2026-03-20,Involuntary,Better opportunity,Marketing,Yes
+E0480,2026-09-07,Involuntary,Personal reasons,Operations,Yes
+E0489,2025-09-15,Voluntary,Relocation,Marketing,Yes
+E0493,2026-08-15,Voluntary,Career change,Operations,Yes

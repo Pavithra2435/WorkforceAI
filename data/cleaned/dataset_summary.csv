@@ -1,0 +1,7 @@
+file,rows,columns
+employee_master.csv,500,10
+attendance.csv,190259,7
+leave.csv,1874,7
+attrition.csv,70,6
+onboarding.csv,2500,6
+workforce_movements.csv,59,8

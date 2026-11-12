@@ -1,0 +1,4013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>WorkforceAI | HR Intelligence Platform</title>
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/2563EB/conference-call.png">
+  <link rel="stylesheet" href="/static/css/style.css?v=20261110_v59">
+  <!-- Chart.js local script (zero external CDN dependency) -->
+  <script src="/static/js/chart.umd.min.js?v=20261108_v12"></script>
+  <script>
+    // Client-side telemetry & error logger
+    window.addEventListener("error", function (e) {
+      const errInfo = (e.message || "Unknown error") + " at " + (e.filename || "") + ":" + (e.lineno || 0);
+      console.error("[TELEMETRY ERROR]:", errInfo);
+      fetch("/api/client-log?err=" + encodeURIComponent(errInfo)).catch(function () { });
+    });
+    window.addEventListener("unhandledrejection", function (e) {
+      const reason = e.reason ? (e.reason.message || String(e.reason)) : "Rejection";
+      console.error("[TELEMETRY REJECTION]:", reason);
+      fetch("/api/client-log?err=" + encodeURIComponent("Unhandled Promise: " + reason)).catch(function () { });
+    });
+    fetch("/api/client-log?msg=" + encodeURIComponent("Page Loaded. Chart.js type: " + typeof window.Chart)).catch(function () { });
+  </script>
+  <style>
+    /* ==============================================================================
+       Self-Contained Dashboard Core Stylesheet (Guaranteed Instant Styling)
+       ============================================================================== */
+    :root {
+      --canvas-bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --card-border: #E2E8F0;
+      --card-border-subtle: #F1F5F9;
+      --sidebar-bg: #0B192C;
+      --sidebar-border: #1E293B;
+      --sidebar-text: #94A3B8;
+      --sidebar-text-active: #FFFFFF;
+      --sidebar-item-active: #1E293B;
+      --navy: #0F172A;
+      --navy-light: #1E3A8A;
+      --blue: #2563EB;
+      --blue-light: #EFF6FF;
+      --blue-border: #BFDBFE;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --green: #059669;
+      --green-bg: #ECFDF5;
+      --green-border: #A7F3D0;
+      --red: #DC2626;
+      --red-bg: #FEF2F2;
+      --red-border: #FECACA;
+      --amber: #D97706;
+      --amber-bg: #FFFBEB;
+      --amber-border: #FDE68A;
+      --header-height: 56px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--canvas-bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Navy-Blue Collapsible Sidebar */
+    .sidebar {
+      width: 250px;
+      min-width: 68px;
+      height: 100vh;
+      background-color: var(--sidebar-bg) !important;
+      border-right: 1px solid var(--sidebar-border);
+      display: flex !important;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 100;
+      color: var(--sidebar-text);
+      transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .sidebar.collapsed {
+      width: 68px;
+    }
+
+    .sidebar.collapsed .brand-text,
+    .sidebar.collapsed .sidebar-label,
+    .sidebar.collapsed .nav-item span:not(.nav-icon),
+    .sidebar.collapsed .sidebar-filters,
+    .sidebar.collapsed .sidebar-footer,
+    .sidebar.collapsed .sidebar-user-details,
+    .sidebar.collapsed .sidebar-logout-btn span,
+    .sidebar.collapsed .sidebar-footer-note,
+    .sidebar.collapsed .emp-sidebar-guardrail,
+    .sidebar.collapsed .db-status-pill span {
+      display: none !important;
+    }
+
+    .sidebar.collapsed .sidebar-user-card {
+      justify-content: center;
+      padding: 0.35rem 0;
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .sidebar.collapsed .sidebar-logout-btn {
+      padding: 0.45rem 0;
+    }
+
+    .sidebar-header {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      border-bottom: 1px solid var(--sidebar-border);
+      flex-shrink: 0;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      background: var(--blue);
+      color: #FFFFFF;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .brand-text h1 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text span {
+      font-size: 0.65rem;
+      color: var(--sidebar-text);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .sidebar-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--sidebar-text);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar-toggle-btn:hover {
+      color: #FFFFFF;
+      background: var(--sidebar-item-active);
+    }
+
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .db-status-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.55rem;
+      border-radius: 6px;
+      background: #0F172A;
+      border: 1px solid var(--sidebar-border);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #94A3B8;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--green);
+      box-shadow: 0 0 6px var(--green);
+    }
+
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--sidebar-text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0 0.45rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--sidebar-text);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      background-color: var(--sidebar-item-active);
+      color: #FFFFFF;
+    }
+
+    .nav-item.active {
+      background-color: var(--sidebar-item-active);
+      color: #FFFFFF;
+      font-weight: 600;
+      border-left: 3px solid var(--blue);
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Sidebar User Profile & Sign Out Footer */
+    .sidebar-user-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--sidebar-border);
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.45);
+      flex-shrink: 0;
+    }
+
+    .sidebar-user-card {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.45rem 0.55rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      transition: background 0.15s ease;
+    }
+
+    .sidebar-user-card:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .sidebar-user-details {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      line-height: 1.25;
+      min-width: 0;
+    }
+
+    .sidebar-user-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #F8FAFC;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar-user-role {
+      font-size: 0.66rem;
+      color: #94A3B8;
+      white-space: nowrap;
+    }
+
+    .sidebar-logout-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      width: 100%;
+      padding: 0.42rem 0.75rem;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+      color: #FCA5A5;
+      border-radius: 7px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .sidebar-logout-btn:hover {
+      background: #DC2626;
+      border-color: #DC2626;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .sidebar-footer-note {
+      font-size: 0.63rem;
+      color: #64748B;
+      text-align: center;
+      padding-top: 0.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    /* Single Filter Dropdown Trigger & Popover Panel */
+    .top-filter-dropdown-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .btn-filter-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 0.42rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1E293B;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      user-select: none;
+    }
+
+    .btn-filter-trigger:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+      transform: translateY(-1px);
+    }
+
+    .btn-filter-trigger.has-active {
+      background: #EFF6FF;
+      border-color: #3B82F6;
+      color: #1D4ED8;
+    }
+
+    .btn-filter-trigger.is-open {
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn-filter-trigger svg {
+      color: #2563EB;
+      flex-shrink: 0;
+    }
+
+    .btn-filter-trigger .chevron-icon {
+      color: #64748B;
+      transition: transform 0.2s ease;
+      margin-left: 0.1rem;
+    }
+
+    .btn-filter-trigger.is-open .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    .filter-count-badge {
+      background: #2563EB;
+      color: #FFFFFF;
+      border-radius: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      min-width: 17px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Active filter pill tags next to the trigger button */
+    .active-filter-pills {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #1E40AF;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      animation: popoverFadeIn 0.15s ease;
+    }
+
+    .filter-pill-tag .btn-remove-tag {
+      background: transparent;
+      border: none;
+      color: #3B82F6;
+      font-size: 0.9rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .filter-pill-tag .btn-remove-tag:hover {
+      color: #DC2626;
+    }
+
+    /* The Popover Menu */
+    .filter-popover-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 330px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: popoverFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popoverFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .filter-popover-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0.85rem;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .filter-popover-title {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0F172A;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .filter-popover-title svg {
+      color: #2563EB;
+    }
+
+    .btn-filter-close {
+      background: transparent;
+      border: none;
+      font-size: 1.15rem;
+      color: #94A3B8;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+
+    .btn-filter-close:hover {
+      color: #DC2626;
+    }
+
+    .filter-popover-body {
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .filter-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .filter-field-label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .filter-field-label svg {
+      color: #3B82F6;
+    }
+
+    .filter-popover-select,
+    .filter-popover-input {
+      width: 100%;
+      padding: 0.42rem 0.6rem;
+      border-radius: 7px;
+      border: 1px solid #CBD5E1;
+      background: #F8FAFC;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #0F172A;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+    }
+
+    .filter-popover-select:focus,
+    .filter-popover-input:focus {
+      background: #FFFFFF;
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .filter-date-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .date-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .date-mini-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .filter-popover-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0.65rem 0.85rem;
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .btn-filter-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: transparent;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-filter-reset:hover {
+      background: #FEF2F2;
+      border-color: #FECACA;
+      color: #DC2626;
+    }
+
+    .floating-uncollapse-btn {
+      position: absolute;
+      top: 14px;
+      right: -12px;
+      width: 24px;
+      height: 24px;
+      background: var(--blue);
+      color: #FFFFFF;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 101;
+    }
+
+    .sidebar.collapsed .floating-uncollapse-btn {
+      display: flex;
+    }
+
+    /* Main Workspace */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--canvas-bg);
+      position: relative;
+    }
+
+    .top-bar {
+      min-height: var(--header-height);
+      height: auto;
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.45rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .top-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .active-filter-badge {
+      display: none;
+      background-color: var(--blue-light);
+      border: 1px solid var(--blue-border);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .content-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem 3rem 1.5rem;
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .kpi-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.95rem 1.15rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .kpi-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .kpi-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .kpi-value {
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Cards & Visualizations Grid */
+    .grid-two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--card-border-subtle);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Chart Container */
+    .chart-container {
+      width: 100%;
+      height: 260px;
+      min-height: 260px;
+      position: relative;
+    }
+
+    .chart-container canvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Attendance & Leave Insight Widget */
+    .att-leave-insight-wrap {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .att-leave-insight-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.35rem;
+    }
+
+    .kpi-pill {
+      font-size: 0.67rem;
+      font-weight: 500;
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .kpi-pill b {
+      font-weight: 700;
+    }
+
+    .kpi-pill.pill-green {
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+    }
+
+    .kpi-pill.pill-amber {
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+
+    .kpi-pill.pill-blue {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+    }
+
+    .kpi-pill.pill-purple {
+      background: #F5F3FF;
+      color: #6D28D9;
+      border: 1px solid #DDD6FE;
+    }
+
+    .kpi-pill.pill-emerald {
+      background: #F0FDF4;
+      color: #15803D;
+      border: 1px solid #BBF7D0;
+    }
+
+    .grid-three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    @media (max-width: 1050px) {
+      .grid-three-col {
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      }
+    }
+
+    .ml-stacked-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      height: 215px;
+      justify-content: space-between;
+    }
+
+    .ml-stacked-box .ml-sub-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.75rem 0.95rem;
+    }
+
+    .leave-donut-box {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chart-container-donut {
+      width: 100%;
+      height: 185px;
+      min-height: 185px;
+      position: relative;
+    }
+
+    .chart-container-donut canvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    .leave-status-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: center;
+      margin-top: 0.45rem;
+    }
+
+    .leave-mini-pill {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+    }
+
+    .leave-mini-pill.pill-approved b {
+      color: #059669;
+    }
+
+    .leave-mini-pill.pill-pending b {
+      color: #D97706;
+    }
+
+    .leave-mini-pill.pill-rejected b {
+      color: var(--red);
+    }
+
+    .insight-sub-title {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .att-rate-side-box {
+      background: var(--canvas-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .att-rate-big-val {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.05;
+      margin-bottom: 0.2rem;
+    }
+
+    .att-rate-sub-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .att-breakdown-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .att-mini-pill {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+    }
+
+    .pill-present b {
+      color: var(--blue);
+    }
+
+    .pill-remote b {
+      color: #0284C7;
+    }
+
+    .pill-halfday b {
+      color: #D97706;
+    }
+
+    .pill-onleave b {
+      color: #059669;
+    }
+
+    .pill-absent b {
+      color: var(--red);
+    }
+
+    /* Attrition & Onboarding Tab Layout */
+    .kpi-grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 650px) {
+      .kpi-grid-two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .att-onb-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1050px) {
+      .att-onb-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .att-column,
+    .onb-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .roster-table-wrap {
+      max-height: 440px;
+      overflow-y: auto;
+    }
+
+    .roster-table-wrap .minimal-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .factor-total-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--canvas-bg);
+      border: 1px solid var(--card-border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+    }
+
+    .card-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      font-weight: 400;
+    }
+
+    /* ML Predictions Panel & Terminology Explanations */
+    .ml-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .ml-panel-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ml-sub-card {
+      background: var(--canvas-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 0.85rem;
+    }
+
+    .ml-sub-card-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .ml-metric-big {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+
+    .ml-sub-text {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .terminology-box {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-left: 3px solid var(--blue);
+      border-radius: 6px;
+    }
+
+    .term-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-desc {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0 0 0.35rem 0;
+    }
+
+    .term-desc:last-child {
+      margin-bottom: 0;
+    }
+
+    .term-label {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Fixed Floating AI Chatbot Icon (Bottom-Right) */
+    .floating-chatbot-btn {
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 24px !important;
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 50% !important;
+      background: #2563EB !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 9998 !important;
+      transition: transform 0.18s ease, background-color 0.18s ease !important;
+    }
+
+    .floating-chatbot-btn:hover {
+      background: #1D4ED8 !important;
+      transform: scale(1.05) !important;
+    }
+
+    /* Hide floating button when full-screen chatbot is open */
+    .app-container:has(.fullscreen-chatbot.open) .floating-chatbot-btn,
+    .main-wrapper:has(.fullscreen-chatbot.open)~.floating-chatbot-btn,
+    .fullscreen-chatbot.open~.floating-chatbot-btn {
+      display: none !important;
+    }
+
+    /* ========================================================================
+       COMPACT FLOATING POP-UP CHATBOT WINDOW (Bottom-Right Docked Widget)
+       ======================================================================== */
+    .fullscreen-chatbot {
+      position: fixed !important;
+      right: 24px !important;
+      bottom: 24px !important;
+      top: auto !important;
+      left: auto !important;
+      width: 385px !important;
+      max-width: calc(100vw - 32px) !important;
+      height: 560px !important;
+      max-height: calc(100vh - 48px) !important;
+      z-index: 9999 !important;
+      background: #F8FAFC !important;
+      display: none !important;
+      flex-direction: column !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      box-shadow: 0 16px 48px rgba(11, 25, 44, 0.28), 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+      border: 1px solid rgba(226, 232, 240, 0.95) !important;
+      animation: popupSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    @keyframes popupSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .fullscreen-chatbot.open {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    /* Expand Button in Chatbot Header */
+    .btn-expand-chatbot {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-expand-chatbot:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      border-color: rgba(255, 255, 255, 0.35) !important;
+      color: #FFFFFF !important;
+      transform: scale(1.06);
+    }
+
+    /* EXPANDED FULL-WINDOW CHATBOT STATE (Covers window size of the tab) */
+    .fullscreen-chatbot.expanded {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      z-index: 10000 !important;
+      animation: none !important;
+    }
+
+    .fullscreen-chatbot.expanded .chatbot-header {
+      border-radius: 0 !important;
+      height: 60px !important;
+      padding: 0 1.5rem !important;
+    }
+
+    .fullscreen-chatbot.expanded .chatbot-messages {
+      padding: 1.5rem 2rem !important;
+    }
+
+    .fullscreen-chatbot.expanded .chatbot-msg-container {
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+    }
+
+    .fullscreen-chatbot.expanded .chatbot-input-bar {
+      border-radius: 0 !important;
+      padding: 0.85rem 1.5rem 1.15rem 1.5rem !important;
+      background: #FFFFFF !important;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .fullscreen-chatbot.expanded .chatbot-input-wrapper {
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+    }
+
+    .fullscreen-chatbot.expanded .suggestions-popover-tray {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      right: auto !important;
+      width: 900px !important;
+      max-width: calc(100vw - 32px) !important;
+      bottom: 80px !important;
+    }
+
+    @media (max-width: 480px) {
+      .fullscreen-chatbot {
+        right: 12px !important;
+        bottom: 12px !important;
+        width: calc(100vw - 24px) !important;
+        height: calc(100vh - 24px) !important;
+        border-radius: 14px !important;
+      }
+    }
+
+    .chatbot-header {
+      height: 58px;
+      padding: 0 0.85rem 0 1rem;
+      background: #0B192C;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1E293B;
+      border-radius: 16px 16px 0 0;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chatbot-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .chatbot-avatar-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+      flex-shrink: 0;
+    }
+
+    .chatbot-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .chatbot-subtitle {
+      font-size: 0.65rem;
+      color: #34D399;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chatbot-guardrail-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.65rem;
+      background: rgba(5, 150, 105, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34D399;
+      padding: 0.18rem 0.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .guardrail-indicator-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+    }
+
+    .btn-close-chatbot {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-close-chatbot:hover {
+      background: #EF4444 !important;
+      border-color: #DC2626 !important;
+      color: #FFFFFF !important;
+      transform: scale(1.06);
+    }
+
+    .kbd-badge {
+      background: #0F172A;
+      border: 1px solid #475569;
+      color: #94A3B8;
+      font-size: 0.68rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    /* Bulb Trigger in Input Bar */
+    .btn-bulb-trigger {
+      background: transparent;
+      border: none;
+      color: #64748B;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+    .btn-bulb-trigger:hover {
+      color: #D97706;
+      background: #FEF3C7;
+      transform: scale(1.1);
+    }
+    .btn-bulb-trigger.active {
+      color: #D97706;
+      background: #FDE68A;
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Popover Suggestions Tray */
+    .suggestions-popover-tray {
+      position: absolute;
+      bottom: 64px;
+      left: 12px;
+      right: 12px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 14px;
+      box-shadow: 0 12px 36px rgba(11, 25, 44, 0.24);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: popoverFadeUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 270px;
+    }
+    @keyframes popoverFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .popover-tray-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.85rem;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .popover-tray-title {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #1E293B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .btn-close-popover {
+      background: transparent;
+      border: none;
+      font-size: 1.15rem;
+      color: #94A3B8;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+    }
+    .btn-close-popover:hover {
+      color: #EF4444;
+    }
+    .popover-tray-list {
+      overflow-y: auto;
+      padding: 0.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .popover-query-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .popover-query-item:hover {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      color: #1D4ED8;
+      transform: translateX(2px);
+    }
+    .popover-query-item .query-bullet {
+      color: #F59E0B;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    /* Inline suggestions right below responses */
+    .chat-inline-suggestions {
+      margin-top: 0.65rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+      border-top: 1px dashed #E2E8F0;
+      padding-top: 0.6rem;
+    }
+    .inline-suggestions-label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .inline-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .inline-prompt-chip {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      padding: 0.28rem 0.65rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: #1E293B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+      line-height: 1.3;
+    }
+    .inline-prompt-chip:hover {
+      background: #EFF6FF;
+      border-color: #3B82F6;
+      color: #1D4ED8;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.12);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      background: #F8FAFC;
+    }
+
+    .chatbot-msg-container {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .chat-bubble-row {
+      display: flex;
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    .chat-bubble-row.user-row {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble-row.assistant-row {
+      justify-content: flex-start;
+    }
+
+    .chat-bubble-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.25);
+    }
+
+    .chat-bubble-card {
+      max-width: 100%;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 0.75rem 0.95rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      color: #0F172A;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .chat-bubble-card.user {
+      background: #0B192C;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px 14px 2px 14px;
+      padding: 0.65rem 0.95rem;
+      max-width: 85%;
+      font-size: 0.82rem;
+      box-shadow: 0 2px 6px rgba(11, 25, 44, 0.2);
+    }
+
+    .chat-bubble-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .chat-author-name {
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: #1E293B;
+    }
+
+    .chat-verified-pill {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: #059669;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .chat-bubble-content p {
+      margin-bottom: 0.65rem;
+    }
+
+    .chat-bubble-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .chat-bubble-content strong {
+      color: #0F172A;
+      font-weight: 700;
+    }
+
+    .chat-bubble-content ul {
+      margin: 0.5rem 0 0.75rem 1.25rem;
+    }
+
+    .chat-bubble-content li {
+      margin-bottom: 0.35rem;
+    }
+
+    .chat-recommendation-box {
+      margin-top: 0.85rem;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-left: 3.5px solid #2563EB;
+      border-radius: 6px;
+      padding: 0.75rem 0.95rem;
+    }
+
+    .chat-rec-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: #1E40AF;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+
+    .chat-rec-body {
+      color: #1E3A8A;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .chat-telemetry {
+      margin-top: 0.75rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed #E2E8F0;
+      font-size: 0.72rem;
+      color: #64748B;
+    }
+
+    .chat-telemetry summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .chat-telemetry summary:hover {
+      color: var(--blue);
+    }
+
+    .chat-telemetry pre {
+      background: #0F172A;
+      color: #F8FAFC;
+      padding: 0.65rem;
+      border-radius: 6px;
+      margin-top: 0.4rem;
+      max-height: 140px;
+      overflow-y: auto;
+      font-size: 0.7rem;
+    }
+
+    /* ========================================================================
+       ANIMATED THINKING TOGGLE COMPONENT
+       ======================================================================== */
+    .thinking-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 0.85rem 1.15rem;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
+      border-left: 3.5px solid #2563EB;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thinking-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.08), transparent);
+      animation: thinkingSweep 2s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes thinkingSweep {
+      0% {
+        left: -100%;
+      }
+
+      50%,
+      100% {
+        left: 100%;
+      }
+    }
+
+    .thinking-toggle-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .thinking-status-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .thinking-pulse-orb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+      animation: pulseGlow 1.6s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    .thinking-pulse-orb::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      animation: innerPulse 1.6s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+      }
+
+      50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 16px rgba(124, 58, 237, 0.7);
+      }
+    }
+
+    @keyframes innerPulse {
+
+      0%,
+      100% {
+        opacity: 0.8;
+        transform: scale(0.9);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    .thinking-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .thinking-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .thinking-dots span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #2563EB;
+      display: inline-block;
+      animation: thinkingBounce 1.4s infinite ease-in-out both;
+    }
+
+    .thinking-dots span:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    .thinking-dots span:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
+    .thinking-dots span:nth-child(3) {
+      animation-delay: 0s;
+    }
+
+    @keyframes thinkingBounce {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0);
+        opacity: 0.3;
+      }
+
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .thinking-progress-track {
+      width: 100%;
+      height: 3px;
+      background: #E2E8F0;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 0.55rem 0 0.35rem 0;
+    }
+
+    .thinking-progress-fill {
+      height: 100%;
+      width: 35%;
+      background: linear-gradient(90deg, #2563EB, #7C3AED, #2563EB);
+      background-size: 200% 100%;
+      border-radius: 2px;
+      animation: thinkingProgress 1.6s infinite ease-in-out;
+    }
+
+    @keyframes thinkingProgress {
+      0% {
+        width: 10%;
+        margin-left: 0%;
+        background-position: 0% 50%;
+      }
+
+      50% {
+        width: 65%;
+        margin-left: 20%;
+        background-position: 100% 50%;
+      }
+
+      100% {
+        width: 10%;
+        margin-left: 90%;
+        background-position: 0% 50%;
+      }
+    }
+
+    .thinking-live-step {
+      font-size: 0.78rem;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+      font-style: italic;
+    }
+
+    .thinking-live-step span.step-spark {
+      color: #7C3AED;
+      animation: pulseGlow 1.4s infinite ease-in-out;
+    }
+
+    /* Smooth response arrival animation */
+    @keyframes responseReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.99);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chat-bubble-row.new-response {
+      animation: responseReveal 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .thinking-toggle-caret {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #F1F5F9;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      transition: transform 0.2s ease, background 0.15s ease;
+    }
+
+    .thinking-toggle-caret:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+
+    .thinking-toggle-caret.open {
+      transform: rotate(180deg);
+    }
+
+    .thinking-body {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed #E2E8F0;
+      font-size: 0.78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+    }
+
+    .thinking-body.hidden {
+      display: none !important;
+    }
+
+    .thinking-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .thinking-step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2563EB;
+      box-shadow: 0 0 6px rgba(37, 99, 235, 0.6);
+      animation: pulseGlow 1.8s infinite ease-in-out;
+    }
+
+    .thinking-step-text {
+      color: #334155;
+      font-weight: 500;
+      font-size: 0.78rem;
+    }
+
+    /* Thought Process Collapsible for Finished Responses */
+    .thought-process-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #64748B;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 0.2rem 0.55rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-bottom: 0.65rem;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .thought-process-toggle:hover {
+      background: #EFF6FF;
+      color: #2563EB;
+      border-color: #BFDBFE;
+    }
+
+    .thought-process-toggle .thought-caret {
+      font-size: 0.55rem;
+      transition: transform 0.2s ease;
+    }
+
+    .thought-process-toggle.open .thought-caret {
+      transform: rotate(180deg);
+    }
+
+    .thought-process-details {
+      display: none;
+      background: #F8FAFC;
+      border-left: 2px solid #CBD5E1;
+      padding: 0.45rem 0.75rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.74rem;
+      color: #475569;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .thought-process-details.open {
+      display: flex;
+    }
+
+    .thought-step {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ========================================================================
+       AI ASSISTANT RLHF FEEDBACK CONTROLS (THUMBS UP / THUMBS DOWN)
+       ======================================================================== */
+    .chat-feedback-bar {
+      margin-top: 0.85rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .feedback-prompt {
+      font-size: 0.72rem;
+      color: #94A3B8;
+      font-weight: 500;
+      margin-right: 0.2rem;
+    }
+
+    .feedback-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 7px;
+      padding: 0;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+
+    .feedback-btn svg {
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+
+    .feedback-btn:hover:not(:disabled) {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+    }
+
+    .feedback-btn:hover:not(:disabled) svg {
+      transform: scale(1.15);
+    }
+
+    .feedback-btn.btn-thumbs-up:hover:not(:disabled) {
+      color: #059669;
+      border-color: #A7F3D0;
+      background: #ECFDF5;
+    }
+
+    .feedback-btn.btn-thumbs-down:hover:not(:disabled) {
+      color: #DC2626;
+      border-color: #FECACA;
+      background: #FEF2F2;
+    }
+
+    .feedback-btn.active-good {
+      background: #ECFDF5 !important;
+      color: #059669 !important;
+      border-color: #10B981 !important;
+      font-weight: 600 !important;
+      box-shadow: 0 1px 4px rgba(16, 185, 129, 0.2) !important;
+    }
+
+    .feedback-btn.active-bad {
+      background: #FEF2F2 !important;
+      color: #DC2626 !important;
+      border-color: #EF4444 !important;
+      font-weight: 600 !important;
+      box-shadow: 0 1px 4px rgba(239, 68, 68, 0.2) !important;
+    }
+
+    .feedback-btn:disabled {
+      cursor: default;
+      opacity: 0.75;
+    }
+
+    .feedback-status-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #059669;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 0.18rem 0.55rem;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      animation: feedbackFadeIn 0.3s ease;
+    }
+
+    @keyframes feedbackFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .chatbot-input-bar {
+      padding: 0.65rem 0.85rem 0.75rem 0.85rem;
+      background: #FFFFFF;
+      border-top: 1px solid #E2E8F0;
+      border-radius: 0 0 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .chatbot-input-wrapper {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #F8FAFC;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 24px;
+      padding: 0.25rem 0.35rem 0.25rem 0.85rem;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .chatbot-input-wrapper:focus-within {
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      background: #FFFFFF;
+    }
+
+    .chatbot-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 0.5rem 0;
+      font-size: 0.88rem;
+      outline: none;
+      color: #0F172A;
+      font-family: inherit;
+    }
+
+    .btn-send-chat {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+      border-radius: 50% !important;
+      background: #2563EB !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+      flex-shrink: 0 !important;
+      transition: transform 0.15s ease, background 0.15s ease !important;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35) !important;
+    }
+
+    .btn-send-chat:hover {
+      background: #1D4ED8 !important;
+      transform: scale(1.06) !important;
+    }
+
+    .btn-send-chat svg {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+      fill: #FFFFFF !important;
+      stroke: #FFFFFF !important;
+      display: block !important;
+      margin-left: 2px !important;
+      pointer-events: none !important;
+    }
+
+    .chatbot-disclaimer {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .chatbot-disclaimer code {
+      background: #F1F5F9;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      color: #475569;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       ROLE-BASED AUTHENTICATION LOGIN SCREEN
+       ======================================================================== -->
+  <div id="login-screen-overlay" class="login-screen-overlay">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h1>WorkforceAI</h1>
+        <p>Enterprise HR Intelligence</p>
+      </div>
+
+      <div class="login-body">
+        <div id="login-error-alert" class="login-error-alert">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span id="login-error-text">Invalid email address or password.</span>
+        </div>
+
+        <form id="login-form">
+          <div class="login-form-group">
+            <label class="login-label" for="login-email">Email</label>
+            <input type="email" id="login-email" class="login-input"
+              placeholder="Email" required autocomplete="username">
+          </div>
+
+          <div class="login-form-group">
+            <label class="login-label" for="login-password">Password</label>
+            <input type="password" id="login-password" class="login-input" placeholder="••••••••" required
+              autocomplete="current-password">
+          </div>
+
+          <button type="submit" id="btn-login-submit" class="login-btn-submit">
+            <span>Sign In</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container" id="app-container-admin" style="display:none;">
+
+    <!-- ========================================================================
+         1. NAVY-BLUE COLLAPSIBLE SIDEBAR
+         ======================================================================== -->
+    <aside class="sidebar" id="app-sidebar">
+      <button class="floating-uncollapse-btn" id="btn-floating-uncollapse" title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      <div class="sidebar-header">
+        <a href="#" class="brand-box" onclick="switchView('overview'); return false;">
+          <div class="brand-logo">W</div>
+          <div class="brand-text">
+            <h1>WorkforceAI</h1>
+            <span>HR Intelligence</span>
+          </div>
+        </a>
+        <button class="sidebar-toggle-btn" id="btn-toggle-sidebar" title="Collapse Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- Database Connection Status -->
+        <div class="db-status-pill" id="db-status-pill">
+          <div class="status-dot"></div>
+          <span>Connected to SQLite</span>
+        </div>
+
+        <!-- Four Core Dashboard Navigation Sections -->
+        <div class="sidebar-label">Navigation</div>
+        <ul class="nav-menu">
+          <li class="nav-item active" data-view="overview" onclick="switchView('overview')" title="Overview">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+            </span>
+            <span>Overview</span>
+          </li>
+          <li class="nav-item" data-view="attrition" onclick="switchView('attrition')" title="Attrition & Onboarding">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="8.5" cy="7" r="4" />
+                <line x1="18" y1="8" x2="23" y2="13" />
+                <line x1="23" y1="8" x2="18" y2="13" />
+              </svg>
+            </span>
+            <span>Attrition & Onboarding</span>
+          </li>
+          <li class="nav-item" data-view="attendance" onclick="switchView('attendance')" title="Attendance & Leave">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </span>
+            <span>Attendance & Leave</span>
+          </li>
+          <li class="nav-item" data-view="movement" onclick="switchView('movement')" title="Workforce Movement">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9" />
+                <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                <polyline points="7 23 3 19 7 15" />
+                <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              </svg>
+            </span>
+            <span>Workforce Movement</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sidebar User Profile & Sign Out Footer (Moved from Top Bar) -->
+      <div class="sidebar-user-footer">
+        <div class="sidebar-user-card" id="admin-profile-pill">
+          <div class="user-avatar-circle">SJ</div>
+          <div class="sidebar-user-details">
+            <span class="sidebar-user-name" id="admin-header-name">Sarah Jenkins (Chief HR Officer)</span>
+            <span class="sidebar-user-role">HR Administrator</span>
+          </div>
+        </div>
+
+        <button class="sidebar-logout-btn" id="btn-logout-admin" title="Sign out of HR Admin Portal">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Sign Out</span>
+        </button>
+
+        <div class="sidebar-footer-note">
+          WorkforceAI v3.0 &bull; SQLite ML Engine
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         2. MAIN WORKSPACE AREA & TOP HEADER
+         ======================================================================== -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h2 class="top-title" id="page-title">Overview</h2>
+          <span class="active-filter-badge" id="active-filter-badge">Scope Active</span>
+        </div>
+
+        <!-- Unified Single Filter Dropdown -->
+        <div class="top-filter-dropdown-wrapper" id="filter-dropdown-wrapper">
+          <button class="btn-filter-trigger" id="btn-filter-trigger" onclick="window.toggleFilterDropdown(event)" title="Filter Workforce Data" aria-haspopup="true" aria-expanded="false">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span>Filters</span>
+            <span class="filter-count-badge" id="filter-count-badge" style="display:none;">0</span>
+            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <!-- Active Filter Pill Badges -->
+          <div class="active-filter-pills" id="active-filter-pills"></div>
+
+          <!-- Filter Popover Menu Dropdown -->
+          <div class="filter-popover-menu" id="filter-popover-menu" style="display:none;" onclick="event.stopPropagation()">
+            <div class="filter-popover-header">
+              <div class="filter-popover-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filter Dashboard</span>
+              </div>
+              <button class="btn-filter-close" onclick="window.closeFilterDropdown()" title="Close">&times;</button>
+            </div>
+
+            <div class="filter-popover-body">
+              <!-- Department Dropdown -->
+              <div class="filter-field-group">
+                <label class="filter-field-label" for="filter-dept">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span>Department</span>
+                </label>
+                <select id="filter-dept" class="filter-popover-select">
+                  <option value="">All Departments</option>
+                </select>
+              </div>
+
+              <!-- Location Dropdown -->
+              <div class="filter-field-group">
+                <label class="filter-field-label" for="filter-loc">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>Location</span>
+                </label>
+                <select id="filter-loc" class="filter-popover-select">
+                  <option value="">All Locations</option>
+                </select>
+              </div>
+
+              <!-- Date Range -->
+              <div class="filter-field-group">
+                <label class="filter-field-label">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Timeline Range</span>
+                </label>
+                <div class="filter-date-inputs">
+                  <div class="date-input-wrap">
+                    <span class="date-mini-label">From:</span>
+                    <input type="date" id="filter-start-date" class="filter-popover-input" min="2021-01-01" max="2026-10-31">
+                  </div>
+                  <div class="date-input-wrap">
+                    <span class="date-mini-label">To:</span>
+                    <input type="date" id="filter-end-date" class="filter-popover-input" min="2021-01-01" max="2026-10-31">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-popover-footer">
+              <button id="btn-reset-filters" class="btn-filter-reset" title="Reset all filters">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-body">
+
+        <!-- ====================================================================
+             SECTION 1: OVERVIEW
+             ==================================================================== -->
+        <section class="view-section" id="view-overview">
+          <!-- 4 Primary Executive KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Total Employees</span>
+              </div>
+              <div class="kpi-value" id="kpi-total-employees">500</div>
+              <div class="kpi-sub"><span style="color:var(--green); font-weight:600;"
+                  id="kpi-active-employees">430</span> active personnel</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Attrition Rate</span>
+              </div>
+              <div class="kpi-value" id="kpi-attrition-rate" style="color:var(--red);">18.4%</div>
+              <div class="kpi-sub" id="kpi-attrition-sub"><span id="kpi-exited-count"
+                  style="font-weight:600; color:var(--red);">70</span> Exits &bull; <span id="kpi-onboarded-count"
+                  style="font-weight:600; color:var(--green);">169</span> Onboarded &bull; Net: <span
+                  id="kpi-net-growth" style="font-weight:600; color:var(--green);">+99</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Attendance Rate</span>
+              </div>
+              <div class="kpi-value" id="kpi-attendance-rate" style="color:var(--blue);">80.0%</div>
+              <div class="kpi-sub">Office presence compliance</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Leave Utilization</span>
+              </div>
+              <div class="kpi-value" id="kpi-leave-utilization">78.9%</div>
+              <div class="kpi-sub" id="kpi-leave-sub"><span style="color:var(--green); font-weight:600;"
+                  id="kpi-leave-days-used">4,069</span> Days Used of <span style="font-weight:600;"
+                  id="kpi-leave-quota-days">5,160</span> Quota &bull; <span style="color:var(--blue); font-weight:600;"
+                  id="kpi-leave-app-count">1,481</span> Approved</div>
+            </div>
+          </div>
+
+          <!-- Visualizations Grid Row 1 & 2 (2 Columns) -->
+          <div class="grid-two-col">
+            <!-- 1. Workforce Trend -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Workforce Trend</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-workforce-trend"></canvas>
+              </div>
+            </div>
+
+            <!-- 2. Department Distribution -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Department Distribution</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-dept-distribution"></canvas>
+              </div>
+            </div>
+
+            <!-- 3. Attrition by Department -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Attrition by Department</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-overview-attrition-trend"></canvas>
+              </div>
+            </div>
+
+            <!-- 4. Attendance & Leave -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Attendance & Leave</span>
+              </div>
+
+              <!-- Attendance & Leave Insight Row (Donut on Left with Center %, Attendance Rate on Right) -->
+              <div class="att-leave-insight-wrap">
+                <!-- Leave Donut Chart with Utilization % at Center -->
+                <div class="leave-donut-box">
+                  <div class="insight-sub-title">Leave Utilization & Distribution</div>
+                  <div class="chart-container-donut">
+                    <canvas id="chart-overview-leave-donut"></canvas>
+                  </div>
+                  <div class="leave-status-pills">
+                    <span class="leave-mini-pill pill-approved">Approved: <b id="leave-approved-pct">79.0%</b></span>
+                    <span class="leave-mini-pill pill-pending">Pending: <b id="leave-pending-pct">11.4%</b></span>
+                    <span class="leave-mini-pill pill-rejected">Rejected: <b id="leave-rejected-pct">9.6%</b></span>
+                  </div>
+                </div>
+
+                <!-- Attendance Rate in Percentage beside the Donut -->
+                <div class="att-rate-side-box">
+                  <div class="insight-sub-title">Attendance Rate</div>
+                  <div class="att-rate-big-val" id="overview-att-rate">80.0%</div>
+                  <div class="att-rate-sub-text">Office presence compliance</div>
+                  <div class="att-breakdown-pills">
+                    <span class="att-mini-pill pill-present">Present: <b id="overview-present-pct">80.0%</b></span>
+                    <span class="att-mini-pill pill-remote">Remote: <b id="overview-remote-pct">9.3%</b></span>
+                    <span class="att-mini-pill pill-halfday">Half Day: <b id="overview-halfday-pct">2.9%</b></span>
+                    <span class="att-mini-pill pill-onleave">On Leave: <b id="overview-onleave-pct">2.5%</b></span>
+                    <span class="att-mini-pill pill-absent">Absent: <b id="overview-absent-pct">5.3%</b></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visualizations Grid Row 3 (3 Columns: ML Predictions, Onboarding Donut, Workforce Movement Graph) -->
+          <div class="grid-three-col">
+            <!-- 5. ML Predictions Card (Reduced Size) -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">ML Predictions</span>
+              </div>
+              <div class="ml-stacked-box">
+                <!-- ML Model 1: Exit Forecast -->
+                <div class="ml-sub-card">
+                  <div class="ml-sub-card-title">Predicted Exits (Next 3 Months)</div>
+                  <div class="ml-metric-big"><span id="ml-predicted-exits">16</span> <span
+                      style="font-size:0.82rem; font-weight:600; color:var(--text-secondary);">Exits</span></div>
+                  <div class="ml-sub-text" id="ml-predicted-breakdown">
+                    Nov: 5 &bull; Dec: 5 &bull; Jan: 6 exits/mo
+                  </div>
+                </div>
+
+                <!-- ML Model 2: Attendance Pattern Alerts -->
+                <div class="ml-sub-card">
+                  <div class="ml-sub-card-title">Irregular Attendance Alerts</div>
+                  <div class="ml-metric-big" style="color:var(--amber);"><span id="ml-predicted-anomalies">36</span>
+                    <span style="font-size:0.82rem; font-weight:600; color:var(--text-secondary);">Employees</span>
+                  </div>
+                  <div class="ml-sub-text">
+                    Unusual absence patterns detected
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Onboarding Tasks Donut Chart Card -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Onboarding Milestone Tasks</span>
+              </div>
+              <div class="chart-container" style="height: 215px;">
+                <canvas id="chart-overview-onboarding-donut"></canvas>
+              </div>
+            </div>
+
+            <!-- 7. Workforce Movement Graph Card -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Workforce Movement</span>
+              </div>
+              <div class="chart-container" style="height: 215px;">
+                <canvas id="chart-overview-movements-bar"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 2: ATTRITION & ONBOARDING
+             ==================================================================== -->
+        <section class="view-section" id="view-attrition" style="display:none;">
+          <!-- 1. Top Two KPI Cards (Attrition Rate & Onboarding) -->
+          <div class="kpi-grid-two">
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Attrition Rate</span>
+              </div>
+              <div class="kpi-value" id="att-view-rate" style="color:var(--red);">18.4%</div>
+              <div class="kpi-sub" id="att-view-sub"><b id="att-view-exited" style="color:var(--red);">70</b> Exits
+                &bull; <b id="att-view-onboarded" style="color:var(--green);">169</b> Onboarded &bull; Net: <b
+                  id="att-view-net" style="color:var(--green);">+99</b> (<span id="att-view-replacement"
+                  style="font-weight:600;">2.41x</span> replacement)</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Onboarding Completion</span>
+                <span class="kpi-badge badge-green">Milestones</span>
+              </div>
+              <div class="kpi-value" id="att-view-onboarding" style="color:var(--green);">88.2%</div>
+              <div class="kpi-sub" id="onb-view-sub"><b id="onb-view-completed">2,204</b> Completed Tasks &bull; <b
+                  id="onb-view-pending">296</b> Pending Tasks</div>
+            </div>
+          </div>
+
+          <!-- 2. Two-Column Dashboard Split (Left: Attrition Factors & Predicted Departures | Right: Onboarding Tracker) -->
+          <div class="att-onb-grid">
+            <!-- LEFT COLUMN: ATTRITION INTELLIGENCE -->
+            <div class="att-column">
+              <!-- Attrition Factors Card -->
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <span class="card-title">Attrition Factors & Exit Drivers</span>
+                    <div class="card-subtitle">Historical departure reasons and primary contributing departure factors
+                    </div>
+                  </div>
+                  <span class="factor-total-pill" id="att-factors-total-pill">70 Exits Total</span>
+                </div>
+                <div class="chart-container" style="height: 250px;">
+                  <canvas id="chart-attrition-factors"></canvas>
+                </div>
+              </div>
+
+              <!-- Employees at Risk of Leaving (Attrition Watchlist) -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Employees at Risk of Leaving</span>
+                </div>
+                <div class="table-toolbar">
+                  <input type="text" id="search-flight-risk" class="table-search-input" placeholder="Search for emp">
+                </div>
+                <div class="table-responsive roster-table-wrap">
+                  <table class="minimal-table">
+                    <thead>
+                      <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Department</th>
+                        <th>Exit Risk</th>
+                        <th>Departure Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody-flight-risk">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: ONBOARDING INTELLIGENCE -->
+            <div class="onb-column">
+              <!-- Onboarding Milestones Card -->
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <span class="card-title">Onboarding Milestone Progress</span>
+                    <div class="card-subtitle">Task completion distribution across new hires</div>
+                  </div>
+                  <span class="factor-total-pill" id="onb-milestone-total">2,500 Tasks</span>
+                </div>
+                <div class="chart-container" style="height: 250px;">
+                  <canvas id="chart-onboarding-donut"></canvas>
+                </div>
+              </div>
+
+              <!-- Onboarding Employee Roster Table -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Employee Onboarding Tracker</span>
+                </div>
+                <div class="table-toolbar">
+                  <input type="text" id="search-onboarding" class="table-search-input" placeholder="Search for emp">
+                </div>
+                <div class="table-responsive roster-table-wrap">
+                  <table class="minimal-table">
+                    <thead>
+                      <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                        <th>Status / Progress</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody-onboarding">
+                      <!-- Populated by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 3: ATTENDANCE & LEAVE
+             ==================================================================== -->
+        <section class="view-section" id="view-attendance" style="display:none;">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Attendance Rate</div>
+              <div class="kpi-value" id="att-page-rate" style="color:var(--blue);">80.0%</div>
+              <div class="kpi-sub">Office presence compliance</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Present Days</div>
+              <div class="kpi-value" id="att-page-present">152,292</div>
+              <div class="kpi-sub">Plus 17,731 remote workdays</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Absent Days</div>
+              <div class="kpi-value" id="att-page-absent" style="color:var(--red);">10,069</div>
+              <div class="kpi-sub">5.3% unscheduled absenteeism</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Leave Utilization</div>
+              <div class="kpi-value" id="att-page-leave-util">78.9%</div>
+              <div class="kpi-sub"><span id="att-page-leave-days"
+                  style="color:var(--green); font-weight:600;">4,069</span> days used of <span id="att-page-leave-quota"
+                  style="font-weight:600;">5,160</span> quota</div>
+            </div>
+          </div>
+
+          <div class="grid-two-col">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Monthly Attendance Trend</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-attendance-trend"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Leave Requests Status</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-leave-donut"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attendance Anomalies Detected by ML -->
+          <!-- Irregular Attendance Pattern Alerts -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <span class="card-title">Irregular Attendance Pattern Alerts</span>
+                <div class="card-subtitle">Staff exhibiting notable absence spikes, recurring Monday/Friday leaves, or
+                  frequent early departures</div>
+              </div>
+            </div>
+            <div class="table-toolbar">
+              <input type="text" id="search-anomalies" class="table-search-input" placeholder="Search for emp">
+            </div>
+            <div class="table-responsive roster-table-wrap">
+              <table class="minimal-table">
+                <thead>
+                  <tr>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Absence Rate</th>
+                    <th>Mon / Fri Absence %</th>
+                    <th>Short Workdays (&lt; 6 hrs)</th>
+                    <th>Primary Attendance Alert</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-anomalies">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 4: WORKFORCE MOVEMENT
+             ==================================================================== -->
+        <section class="view-section" id="view-movement" style="display:none;">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Total Movements</div>
+              <div class="kpi-value" id="mov-total">59</div>
+              <div class="kpi-sub">Internal career movements</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Promotions</div>
+              <div class="kpi-value" id="mov-promotions" style="color:var(--green);">14</div>
+              <div class="kpi-sub">Upward career advancement</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Transfers</div>
+              <div class="kpi-value" id="mov-transfers" style="color:var(--blue);">26</div>
+              <div class="kpi-sub">Cross-department mobility</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Role Changes</div>
+              <div class="kpi-value" id="mov-role-changes" style="color:var(--amber);">19</div>
+              <div class="kpi-sub">Horizontal specialization</div>
+            </div>
+          </div>
+
+          <!-- Monthly Movements Chart -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Monthly Workforce Movements</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-movements-monthly"></canvas>
+            </div>
+          </div>
+
+          <!-- Employee Movement Table -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Employee Movement Directory</span>
+            </div>
+            <div class="table-toolbar">
+              <input type="text" id="search-movements" class="table-search-input" placeholder="Search for emp">
+              <select id="filter-movement-type" class="sidebar-select"
+                style="max-width: 180px; background:#FFFFFF; color:var(--text-primary); border-color:var(--card-border);">
+                <option value="">All Movement Types</option>
+                <option value="Promotion">Promotion</option>
+                <option value="Transfer">Transfer</option>
+                <option value="Role Change">Role Change</option>
+              </select>
+            </div>
+            <div class="table-responsive roster-table-wrap">
+              <table class="minimal-table">
+                <thead>
+                  <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Type</th>
+                    <th>Previous Department</th>
+                    <th>New Department</th>
+                    <th>Previous Designation</th>
+                    <th>New Designation</th>
+                    <th>Movement Date</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-movements">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ========================================================================
+           AI CHATBOT WORKSPACE (Confined to main-wrapper, NEVER overlaps sidebar)
+           ======================================================================== -->
+      <div class="fullscreen-chatbot" id="fullscreen-chatbot" style="display: none !important;">
+        <!-- Premium Navy Header -->
+        <div class="chatbot-header">
+          <div class="chatbot-title-wrap">
+            <div class="chatbot-avatar-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"
+                  fill="#FFFFFF" />
+                <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD" />
+                <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD" />
+              </svg>
+            </div>
+            <div>
+              <div class="chatbot-title">WorkforceAI Copilot</div>
+              <div
+                style="font-size: 0.65rem; color: #34D399; display: flex; align-items: center; gap: 4px; font-weight: 600;">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+                Online
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.45rem;">
+            <button class="btn-expand-chatbot" id="btn-expand-chatbot-hr"
+              onclick="window.toggleChatbotExpand('hr')" title="Expand to full window"
+              aria-label="Expand chatbot to window size">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </button>
+            <button class="btn-close-chatbot" id="btn-close-chatbot"
+              onclick="if(window.closeChatbot)window.closeChatbot();" title="Close Chatbot (Esc)"
+              aria-label="Close chatbot">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Messages Scroll Area -->
+        <div class="chatbot-messages" id="chatbot-messages-container">
+          <!-- Rendered dynamically by JS -->
+        </div>
+
+        <!-- Popover Suggestions Tray (Toggled via Bulb Icon) -->
+        <div class="suggestions-popover-tray" id="suggestions-popover-hr" style="display: none;">
+          <div class="popover-tray-header">
+            <span class="popover-tray-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#D97706" stroke-width="2">
+                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z" />
+              </svg>
+              Quick Prompts &amp; Suggestions
+            </span>
+            <button class="btn-close-popover" onclick="window.toggleSuggestionsPopup('hr')" title="Close suggestions">&times;</button>
+          </div>
+          <div class="popover-tray-list">
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('Which department has highest attrition?', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>Which department has highest attrition?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('Who are the employees at risk of leaving?', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>Who are the employees at risk of leaving?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What is the exit forecast for next quarter?', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>What is the exit forecast for next quarter?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('Show irregular attendance patterns and unauthorized absences.', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>Show irregular attendance patterns &amp; alerts</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What are the total promotions and department transfers?', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>Promotions and workforce movements</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What is the company leave utilization breakdown?', 'hr')">
+              <span class="query-bullet">&#10022;</span>
+              <span>Leave utilization breakdown</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="chatbot-input-bar">
+          <div class="chatbot-input-wrapper">
+            <button class="btn-bulb-trigger" id="btn-bulb-hr" onclick="window.toggleSuggestionsPopup('hr')" title="Suggested Questions (💡)" aria-label="Show suggestions">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z" />
+              </svg>
+            </button>
+            <input type="text" id="chatbot-user-input" class="chatbot-input" placeholder="Ask about workforce...">
+            <button id="btn-send-chat" class="btn-send-chat" title="Send Question (Enter)" aria-label="Send message">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display:block; width:20px; height:20px; margin-left:2px; fill:#FFFFFF; stroke:#FFFFFF; pointer-events:none;">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#FFFFFF" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         FIXED FLOATING AI CHATBOT ICON (BOTTOM-RIGHT)
+         ======================================================================== -->
+    <button class="floating-chatbot-btn" id="btn-floating-chatbot" title="Open AI HR Assistant">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"
+          fill="#FFFFFF" />
+        <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD" />
+        <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- ========================================================================
+       EMPLOYEE SELF-SERVICE PORTAL ("MY HR PORTAL")
+       Replicating the HR Admin Dashboard Shell, Theme & Color Theory 1:1
+       ======================================================================== -->
+  <div class="app-container" id="app-container-employee" style="display:none;">
+
+    <!-- 1. Collapsible Navy-Blue Sidebar for Employee Portal -->
+    <aside class="sidebar" id="emp-app-sidebar">
+      <button class="floating-uncollapse-btn" id="btn-floating-uncollapse-emp" onclick="uncollapseEmpSidebar()"
+        title="Expand Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      <div class="sidebar-header">
+        <a href="#" class="brand-box" onclick="switchEmpTab('emp-tab-attendance'); return false;">
+          <div class="brand-logo">W</div>
+          <div class="brand-text">
+            <h1>WorkforceAI</h1>
+            <span>My HR Portal</span>
+          </div>
+        </a>
+        <button class="sidebar-toggle-btn" id="btn-toggle-emp-sidebar" onclick="toggleEmpSidebar()"
+          title="Collapse Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- Database Connection Status -->
+        <div class="db-status-pill">
+          <div class="status-dot"></div>
+          <span>Connected to SQLite</span>
+        </div>
+
+        <!-- Employee Navigation -->
+        <div class="sidebar-label">My Workspace</div>
+        <ul class="nav-menu">
+          <li class="nav-item active emp-nav-item" data-tab="emp-tab-attendance"
+            onclick="switchEmpTab('emp-tab-attendance')" title="Attendance Records">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </span>
+            <span>Attendance Records</span>
+          </li>
+          <li class="nav-item emp-nav-item" data-tab="emp-tab-leaves" onclick="switchEmpTab('emp-tab-leaves')"
+            title="Leaves & Balances">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+            </span>
+            <span>Leaves & Balances</span>
+          </li>
+          <li class="nav-item emp-nav-item" data-tab="emp-tab-onboarding" onclick="switchEmpTab('emp-tab-onboarding')"
+            title="Onboarding Milestones">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4" />
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+              </svg>
+            </span>
+            <span>Onboarding Status</span>
+          </li>
+        </ul>
+
+        <!-- Role Scope Card -->
+        <div class="emp-sidebar-guardrail"
+          style="margin-top:auto; padding:0.85rem 0.75rem; background:#0F172A; border:1px solid #1E293B; border-radius:6px;">
+          <div
+            style="font-size:0.65rem; color:#94A3B8; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; margin-bottom:0.3rem;">
+            Role Guardrail</div>
+          <div style="font-size:0.75rem; color:#10B981; font-weight:600; display:flex; align-items:center; gap:0.4rem;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Employee Self-Service
+          </div>
+          <div style="font-size:0.68rem; color:#64748B; margin-top:0.25rem; line-height:1.35;">
+            Authorized for personal records and scoped queries only.
+          </div>
+        </div>
+      </div>
+
+      <!-- Employee Sidebar User Footer (Moved from Top Bar) -->
+      <div class="sidebar-user-footer">
+        <div class="sidebar-user-card" id="emp-profile-pill">
+          <div class="user-avatar-circle" id="emp-avatar-initials">AS</div>
+          <div class="sidebar-user-details">
+            <span class="sidebar-user-name" id="emp-header-name">Ajay Sharma (E0087)</span>
+            <span class="sidebar-user-role" style="color:#10B981; font-weight:600;">Employee Portal</span>
+          </div>
+        </div>
+
+        <button class="sidebar-logout-btn" id="btn-logout-employee" title="Sign out of My HR Portal">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Sign Out</span>
+        </button>
+
+        <div class="sidebar-footer-note">
+          WorkforceAI &bull; Self-Service Portal
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. Main Workspace Area (Exact replica of HR Admin layout) -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h2 class="top-title" id="emp-page-title">Attendance Records</h2>
+          <span class="active-filter-badge"
+            style="display:inline-block; background:#ECFDF5; color:#047857; border:1px solid #A7F3D0; font-size:0.72rem; font-weight:600; padding:0.18rem 0.5rem; border-radius:4px;">Employee
+            Self-Service</span>
+        </div>
+      </header>
+
+      <div class="content-body" style="padding:1.25rem 1.5rem 3rem 1.5rem;">
+
+        <!-- Professional Employee Profile Summary Strip -->
+        <div class="emp-profile-summary-strip">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div class="emp-summary-avatar" id="emp-hero-avatar">AS</div>
+            <div>
+              <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+                <h3 id="emp-hero-name" style="font-size:1.15rem; font-weight:700; color:#0F172A;">Ajay Sharma</h3>
+                <span class="status-chip present" id="emp-hero-status"
+                  style="font-size:0.68rem; padding:0.12rem 0.5rem;">Active Employee</span>
+              </div>
+              <div id="emp-hero-title" style="font-size:0.84rem; font-weight:500; color:#475569; margin-top:0.2rem;">
+                Finance Manager &bull; Finance Department</div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap;">
+            <div
+              style="padding:0.35rem 0.65rem; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; font-size:0.75rem; color:#475569;">
+              <span
+                style="color:#94A3B8; font-size:0.65rem; text-transform:uppercase; font-weight:600; display:block;">Employee
+                ID</span>
+              <b id="emp-hero-id" style="color:#0F172A;">E0087</b>
+            </div>
+            <div
+              style="padding:0.35rem 0.65rem; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; font-size:0.75rem; color:#475569;">
+              <span
+                style="color:#94A3B8; font-size:0.65rem; text-transform:uppercase; font-weight:600; display:block;">Location</span>
+              <b id="emp-hero-location" style="color:#0F172A;">Mumbai</b>
+            </div>
+            <div
+              style="padding:0.35rem 0.65rem; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; font-size:0.75rem; color:#475569;">
+              <span
+                style="color:#94A3B8; font-size:0.65rem; text-transform:uppercase; font-weight:600; display:block;">Tenure
+                Since</span>
+              <b id="emp-hero-joining" style="color:#0F172A;">Apr 2023</b>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 KPI Metric Cards (Matching HR Dashboard 1:1) -->
+        <div class="kpi-grid" style="margin-bottom:1.15rem;">
+          <div class="kpi-card">
+            <div class="kpi-card-header">
+              <span class="kpi-title">My Attendance Rate</span>
+            </div>
+            <div class="kpi-value" id="emp-kpi-att-rate"
+              style="font-size:1.65rem; font-weight:800; color:#0F172A; line-height:1.2;">90.5%</div>
+            <div class="kpi-pills-wrap">
+              <span class="kpi-pill pill-green" id="emp-kpi-att-sub">88 days present &bull; 7 days remote</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-header">
+              <span class="kpi-title">Average Daily Hours</span>
+            </div>
+            <div class="kpi-value" id="emp-kpi-hours"
+              style="font-size:1.65rem; font-weight:800; color:#0F172A; line-height:1.2;">8.2h</div>
+            <div class="kpi-pills-wrap">
+              <span class="kpi-pill pill-blue">Standard 8h full-time logging</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-header">
+              <span class="kpi-title">Leave Balance Remaining</span>
+            </div>
+            <div class="kpi-value" id="emp-kpi-leave-balance"
+              style="font-size:1.65rem; font-weight:800; color:#0F172A; line-height:1.2;">22 Days</div>
+            <div class="kpi-pills-wrap">
+              <span class="kpi-pill pill-amber" id="emp-kpi-leave-sub">12 Casual &bull; 10 Sick</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-header">
+              <span class="kpi-title">Onboarding Status</span>
+            </div>
+            <div class="kpi-value" id="emp-kpi-onb-rate"
+              style="font-size:1.65rem; font-weight:800; color:#0F172A; line-height:1.2;">100%</div>
+            <div class="kpi-pills-wrap">
+              <span class="kpi-pill pill-purple" id="emp-kpi-onb-sub">All milestones completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 1: Attendance History -->
+        <section class="emp-tab-content" id="emp-tab-attendance">
+          <div class="emp-table-card">
+            <div class="emp-card-header">
+              <h3>Recent Logged Attendance Records</h3>
+              <span style="font-size:0.75rem; color:#64748B;">Showing verified check-in, check-out and logged
+                hours</span>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="emp-data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="emp-attendance-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: Leaves & Balances -->
+        <section class="emp-tab-content" id="emp-tab-leaves" style="display:none;">
+          <div
+            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.15rem;">
+            <div class="emp-table-card">
+              <h4 style="font-size:0.85rem; font-weight:700; color:#0F172A; margin-bottom:0.75rem;">Casual Leave Balance
+              </h4>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
+                <span id="lbl-cl-used" style="color:#64748B;">0 Days Used</span>
+                <span id="lbl-cl-rem" style="font-weight:700; color:#059669;">12 Days Left</span>
+              </div>
+              <div style="width:100%; height:8px; background:#F1F5F9; border-radius:4px; overflow:hidden;">
+                <div id="bar-cl" style="width:0%; height:100%; background:#059669; border-radius:4px;"></div>
+              </div>
+            </div>
+
+            <div class="emp-table-card">
+              <h4 style="font-size:0.85rem; font-weight:700; color:#0F172A; margin-bottom:0.75rem;">Sick Leave Balance
+              </h4>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
+                <span id="lbl-sl-used" style="color:#64748B;">0 Days Used</span>
+                <span id="lbl-sl-rem" style="font-weight:700; color:#2563EB;">10 Days Left</span>
+              </div>
+              <div style="width:100%; height:8px; background:#F1F5F9; border-radius:4px; overflow:hidden;">
+                <div id="bar-sl" style="width:0%; height:100%; background:#2563EB; border-radius:4px;"></div>
+              </div>
+            </div>
+
+            <div class="emp-table-card">
+              <h4 style="font-size:0.85rem; font-weight:700; color:#0F172A; margin-bottom:0.75rem;">Paid Vacation
+                Balance</h4>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
+                <span id="lbl-pl-used" style="color:#64748B;">0 Days Used</span>
+                <span id="lbl-pl-rem" style="font-weight:700; color:#7C3AED;">15 Days Left</span>
+              </div>
+              <div style="width:100%; height:8px; background:#F1F5F9; border-radius:4px; overflow:hidden;">
+                <div id="bar-pl" style="width:0%; height:100%; background:#7C3AED; border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="emp-table-card">
+            <div class="emp-card-header">
+              <h3>My Leave Applications</h3>
+              <span style="font-size:0.75rem; color:#64748B;">Application history and approval status</span>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="emp-data-table">
+                <thead>
+                  <tr>
+                    <th>Leave ID</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Days</th>
+                    <th>Approval Status</th>
+                  </tr>
+                </thead>
+                <tbody id="emp-leaves-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: Onboarding Milestones -->
+        <section class="emp-tab-content" id="emp-tab-onboarding" style="display:none;">
+          <div class="emp-table-card">
+            <div class="emp-card-header">
+              <h3>Onboarding Induction Checklist</h3>
+              <span id="emp-onb-badge-status"
+                style="font-size:0.72rem; font-weight:600; color:#059669; background:#ECFDF5; padding:0.2rem 0.55rem; border-radius:6px; border:1px solid #A7F3D0;">100%
+                Completed</span>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="emp-data-table">
+                <thead>
+                  <tr>
+                    <th>Milestone Task</th>
+                    <th>Assigned Date</th>
+                    <th>Completion Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="emp-onboarding-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ========================================================================
+           EMPLOYEE AI CHATBOT WORKSPACE (Replicates HR Chatbot Theme & Animations)
+           ======================================================================== -->
+      <div class="fullscreen-chatbot" id="fullscreen-chatbot-emp" style="display: none !important;">
+        <!-- Premium Navy Header -->
+        <div class="chatbot-header">
+          <div class="chatbot-title-wrap">
+            <div class="chatbot-avatar-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"
+                  fill="#FFFFFF" />
+                <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD" />
+                <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD" />
+              </svg>
+            </div>
+            <div>
+              <div class="chatbot-title">Personal Assistant</div>
+              <div
+                style="font-size: 0.65rem; color: #34D399; display: flex; align-items: center; gap: 4px; font-weight: 600;">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+                Online
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:0.45rem;">
+            <button class="btn-expand-chatbot" id="btn-expand-chatbot-emp"
+              onclick="window.toggleChatbotExpand('emp')" title="Expand to full window"
+              aria-label="Expand assistant to window size">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </button>
+            <button class="btn-close-chatbot" id="btn-close-emp-chatbot" onclick="closeEmpChatbot()"
+              title="Close Assistant (Esc)" aria-label="Close assistant">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages Scroll Area -->
+        <div class="chatbot-messages" id="emp-chat-messages-container">
+          <!-- Rendered dynamically by JS with thinking animations -->
+        </div>
+
+        <!-- Popover Suggestions Tray (Toggled via Bulb Icon) -->
+        <div class="suggestions-popover-tray" id="suggestions-popover-emp" style="display: none;">
+          <div class="popover-tray-header">
+            <span class="popover-tray-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#D97706" stroke-width="2">
+                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z" />
+              </svg>
+              My Assistant Suggestions
+            </span>
+            <button class="btn-close-popover" onclick="window.toggleSuggestionsPopup('emp')" title="Close suggestions">&times;</button>
+          </div>
+          <div class="popover-tray-list">
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('How many leaves do I have left?', 'emp')">
+              <span class="query-bullet">&#10022;</span>
+              <span>How many leaves do I have left?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('How is my attendance looking this month?', 'emp')">
+              <span class="query-bullet">&#10022;</span>
+              <span>How is my attendance looking this month?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What is my onboarding status?', 'emp')">
+              <span class="query-bullet">&#10022;</span>
+              <span>What is my onboarding status?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What is the company leave policy?', 'emp')">
+              <span class="query-bullet">&#10022;</span>
+              <span>What is the company leave policy?</span>
+            </button>
+            <button class="popover-query-item" onclick="window.selectSuggestedQuery('What is company attrition and who is at risk?', 'emp')">
+              <span class="query-bullet" style="color:#EF4444;">&#10022;</span>
+              <span style="color:#DC2626;">Test RBAC: What is company attrition?</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Input Bar -->
+        <div class="chatbot-input-bar">
+          <div class="chatbot-input-wrapper">
+            <button class="btn-bulb-trigger" id="btn-bulb-emp" onclick="window.toggleSuggestionsPopup('emp')" title="Suggested Questions (💡)" aria-label="Show suggestions">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z" />
+              </svg>
+            </button>
+            <input type="text" id="emp-chatbot-input" class="chatbot-input"
+              placeholder="Ask about your attendance, remaining leaves, time off, or milestones...">
+            <button id="btn-send-emp-chat" class="btn-send-chat" onclick="submitEmpCopilotMessage()"
+              title="Send Question (Enter)" aria-label="Send message">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display:block; width:20px; height:20px; margin-left:2px; fill:#FFFFFF; stroke:#FFFFFF; pointer-events:none;">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#FFFFFF" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Fixed Floating AI Chatbot Icon (Bottom-Right for Employee Portal) -->
+    <button class="floating-chatbot-btn" id="btn-floating-chatbot-emp" onclick="openEmpChatbot()"
+      title="Open Personal HR Assistant">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"
+          fill="#FFFFFF" />
+        <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD" />
+        <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Employee Navigation & Sidebar Global Controller -->
+  <script>
+    function switchEmpTab(targetId) {
+      // Auto-close employee chatbot overlay whenever user clicks any menu item
+      if (typeof closeEmpChatbot === "function") {
+        closeEmpChatbot();
+      }
+
+      var tabTitles = {
+        "emp-tab-attendance": "Attendance Records",
+        "emp-tab-leaves": "Leaves & Balances",
+        "emp-tab-onboarding": "Onboarding Milestones"
+      };
+
+      var items = document.querySelectorAll(".emp-nav-item");
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].getAttribute("data-tab") === targetId) {
+          items[i].classList.add("active");
+        } else {
+          items[i].classList.remove("active");
+        }
+      }
+
+      var sections = document.querySelectorAll(".emp-tab-content");
+      for (var j = 0; j < sections.length; j++) {
+        sections[j].style.display = (sections[j].id === targetId) ? "block" : "none";
+      }
+
+      var pageTitle = document.getElementById("emp-page-title");
+      if (pageTitle && tabTitles[targetId]) {
+        pageTitle.innerText = tabTitles[targetId];
+      }
+    }
+
+    function toggleEmpSidebar() {
+      var sidebar = document.getElementById("emp-app-sidebar");
+      if (sidebar) sidebar.classList.toggle("collapsed");
+    }
+
+    function uncollapseEmpSidebar() {
+      var sidebar = document.getElementById("emp-app-sidebar");
+      if (sidebar) sidebar.classList.remove("collapsed");
+    }
+
+    // ========================================================================
+    // EMPLOYEE CHATBOT CONTROLLER (Replicates HR Chatbot Theme & Animations)
+    // ========================================================================
+    var empChatState = {
+      open: false,
+      messages: []
+    };
+
+    function openEmpChatbot() {
+      empChatState.open = true;
+      var el = document.getElementById("fullscreen-chatbot-emp");
+      var btn = document.getElementById("btn-floating-chatbot-emp");
+      if (el) {
+        el.style.setProperty("display", "flex", "important");
+        el.classList.add("open");
+      }
+      if (btn) btn.style.setProperty("display", "none", "important");
+      if (empChatState.messages.length === 0) {
+        initEmpWelcomeMessage();
+      }
+      var input = document.getElementById("emp-chatbot-input");
+      if (input) input.focus();
+    }
+
+    function toggleChatbotExpand(type) {
+      var chatbotId = type === "emp" ? "fullscreen-chatbot-emp" : "fullscreen-chatbot";
+      var btnId = type === "emp" ? "btn-expand-chatbot-emp" : "btn-expand-chatbot-hr";
+      var el = document.getElementById(chatbotId);
+      var btn = document.getElementById(btnId);
+      if (!el) return;
+
+      var isExpanded = el.classList.toggle("expanded");
+      if (btn) {
+        if (isExpanded) {
+          btn.setAttribute("title", "Collapse / Restore popup (Esc)");
+          btn.setAttribute("aria-label", "Collapse chatbot to popup");
+          btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="4 14 10 14 10 20"></polyline>' +
+            '<polyline points="20 10 14 10 14 4"></polyline>' +
+            '<line x1="14" y1="10" x2="21" y2="3"></line>' +
+            '<line x1="3" y1="21" x2="10" y2="14"></line>' +
+            '</svg>';
+        } else {
+          btn.setAttribute("title", "Expand to full window");
+          btn.setAttribute("aria-label", "Expand chatbot to window size");
+          btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="15 3 21 3 21 9"></polyline>' +
+            '<polyline points="9 21 3 21 3 15"></polyline>' +
+            '<line x1="21" y1="3" x2="14" y2="10"></line>' +
+            '<line x1="3" y1="21" x2="10" y2="14"></line>' +
+            '</svg>';
+        }
+      }
+
+      var inputId = type === "emp" ? "emp-chatbot-input" : "chatbot-user-input";
+      var input = document.getElementById(inputId);
+      if (input) input.focus();
+    }
+
+    function closeEmpChatbot() {
+      empChatState.open = false;
+      var el = document.getElementById("fullscreen-chatbot-emp");
+      var btn = document.getElementById("btn-floating-chatbot-emp");
+      var expBtn = document.getElementById("btn-expand-chatbot-emp");
+      if (el) {
+        el.style.setProperty("display", "none", "important");
+        el.classList.remove("open");
+        el.classList.remove("expanded");
+      }
+      if (expBtn) {
+        expBtn.setAttribute("title", "Expand to full window");
+        expBtn.setAttribute("aria-label", "Expand assistant to window size");
+        expBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<polyline points="15 3 21 3 21 9"></polyline>' +
+          '<polyline points="9 21 3 21 3 15"></polyline>' +
+          '<line x1="21" y1="3" x2="14" y2="10"></line>' +
+          '<line x1="3" y1="21" x2="10" y2="14"></line>' +
+          '</svg>';
+      }
+      if (btn) btn.style.setProperty("display", "flex", "important");
+    }
+
+    function initEmpWelcomeMessage() {
+      var raw = localStorage.getItem("workforce_session");
+      var name = "there";
+      try {
+        if (raw) {
+          var s = JSON.parse(raw);
+          if (s && s.user && s.user.name) name = s.user.name.split(" ")[0];
+        }
+      } catch (e) { }
+
+      empChatState.messages.push({
+        role: "assistant",
+        answer: "Hello **" + name + "**! I am your personal HR assistant here at WorkforceAI.\n\nI can help you review your available leave balances, check your recent attendance and logged work hours, see where you stand on onboarding milestones, or guide you through workplace policies. How can I help you today?",
+        recommendation: "Tip: Ask in plain English—for example: 'How many vacation days do I have left?' or 'How is my attendance this month?'",
+        suggestions: [
+          "How many leaves do I have left?",
+          "How is my attendance looking this month?",
+          "What is my onboarding status?",
+          "What is the company leave policy?"
+        ]
+      });
+      renderEmpChatMessages();
+    }
+
+    function formatEmpMarkdown(text) {
+      if (!text) return "";
+      var html = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em>$1</em>")
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .replace(/^[•\-\*]\s+(.+)$/gm, "<li>$1</li>")
+        .replace(/(<li>.*<\/li>)/gms, "<ul>$1</ul>")
+        .replace(/\n\n/g, "</p><p>")
+        .replace(/\n/g, "<br>");
+      return "<p>" + html + "</p>";
+    }
+
+    function renderEmpChatMessages() {
+      var container = document.getElementById("emp-chat-messages-container");
+      if (!container) return;
+
+      var html = '<div class="chatbot-msg-container">';
+      for (var i = 0; i < empChatState.messages.length; i++) {
+        var msg = empChatState.messages[i];
+        if (msg.role === "user") {
+          html += '<div class="chat-bubble-row user-row"><div class="chat-bubble-card user">' + msg.text + '</div></div>';
+        } else if (msg.thinking) {
+          html += `
+            <div class="chat-bubble-row assistant-row">
+              <div class="chat-bubble-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z" fill="#FFFFFF"/>
+                  <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD"/>
+                  <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD"/>
+                </svg>
+              </div>
+              <div class="thinking-card">
+                <div class="thinking-toggle-header">
+                  <div class="thinking-status-wrap">
+                    <div class="thinking-pulse-orb"></div>
+                    <span class="thinking-title">Thinking in process
+                      <span class="thinking-dots"><span></span><span></span><span></span></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="thinking-progress-track">
+                  <div class="thinking-progress-fill"></div>
+                </div>
+                <div class="thinking-live-step">
+                  <span class="step-spark">✦</span>
+                  <span id="emp-live-step">${msg.step || "Analyzing personal records..."}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          var chipsMarkup = "";
+          if (msg.suggestions && msg.suggestions.length > 0) {
+            var chipBtns = msg.suggestions.map(function(s) {
+              var safe = s.replace(/'/g, "\\'");
+              return '<button class="inline-prompt-chip" onclick="window.selectSuggestedQuery(\'' + safe + '\', \'emp\')">' + s + '</button>';
+            }).join('');
+            chipsMarkup = `
+              <div class="chat-inline-suggestions">
+                <span class="inline-suggestions-label">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" stroke="#D97706" stroke-width="2">
+                    <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/>
+                  </svg>
+                  Suggested Follow-ups
+                </span>
+                <div class="inline-chips-wrap">
+                  ${chipBtns}
+                </div>
+              </div>
+            `;
+          }
+
+          html += `
+            <div class="chat-bubble-row assistant-row" style="animation: responseReveal 0.28s ease-out;">
+              <div class="chat-bubble-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z" fill="#FFFFFF"/>
+                  <circle cx="19.5" cy="4.5" r="2.2" fill="#93C5FD"/>
+                  <circle cx="4.5" cy="19.5" r="1.6" fill="#93C5FD"/>
+                </svg>
+              </div>
+              <div class="chat-bubble-card">
+                <div class="chat-bubble-header">
+                  <span class="chat-author-name">WorkforceAI Assistant</span>
+                  <span class="chat-verified-pill">✓ Scoped Personal Records</span>
+                </div>
+                <div class="chat-bubble-content">
+                  ${formatEmpMarkdown(msg.answer)}
+                </div>
+                ${msg.recommendation ? `
+                  <div class="chat-recommendation-box">
+                    <div class="chat-rec-header">
+                      <span>💡 Actionable HR Advice</span>
+                    </div>
+                    <div class="chat-rec-body">${msg.recommendation}</div>
+                  </div>
+                ` : ''}
+                ${chipsMarkup}
+              </div>
+            </div>
+          `;
+        }
+      }
+      html += '</div>';
+      container.innerHTML = html;
+      container.scrollTop = container.scrollHeight;
+    }
+
+    async function submitEmpCopilotMessage(queryText) {
+      var input = document.getElementById("emp-chatbot-input");
+      var q = queryText || (input ? input.value.trim() : "");
+      if (!q) return;
+      if (input) input.value = "";
+
+      empChatState.messages.push({ role: "user", text: q });
+      renderEmpChatMessages();
+
+      // Thinking state animation
+      var thinkingObj = {
+        role: "assistant",
+        thinking: true,
+        step: "Authenticating personal identity & role scope..."
+      };
+      empChatState.messages.push(thinkingObj);
+      renderEmpChatMessages();
+
+      var stepTimer1 = setTimeout(function () {
+        thinkingObj.step = "Querying verified attendance logs & leave balances in SQLite...";
+        renderEmpChatMessages();
+      }, 450);
+
+      var stepTimer2 = setTimeout(function () {
+        thinkingObj.step = "Formulating empathetic, humanized HR response...";
+        renderEmpChatMessages();
+      }, 950);
+
+      var startTime = Date.now();
+      var empId = "E0087";
+      try {
+        var raw = localStorage.getItem("workforce_session");
+        if (raw) {
+          var s = JSON.parse(raw);
+          if (s && s.user && s.user.employee_id) empId = s.user.employee_id;
+        }
+      } catch (e) { }
+
+      try {
+        var res = await fetch("/api/employee/copilot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: q, employee_id: empId })
+        });
+        var data = await res.json();
+        var elapsed = Date.now() - startTime;
+        if (elapsed < 1100) {
+          await new Promise(function (r) { setTimeout(r, 1100 - elapsed); });
+        }
+        clearTimeout(stepTimer1);
+        clearTimeout(stepTimer2);
+        empChatState.messages.pop(); // remove thinkingObj
+
+        var empFollowUps = [
+          "How many leaves do I have left?",
+          "How is my attendance looking this month?",
+          "What is the company leave policy?"
+        ];
+        if (q.toLowerCase().indexOf("leave") !== -1) {
+          empFollowUps = [
+            "How is my attendance looking this month?",
+            "What is the company leave policy?",
+            "What is my onboarding status?"
+          ];
+        } else if (q.toLowerCase().indexOf("attendance") !== -1) {
+          empFollowUps = [
+            "How many leaves do I have left?",
+            "What is the company leave policy?",
+            "What is my onboarding status?"
+          ];
+        }
+
+        empChatState.messages.push({
+          role: "assistant",
+          answer: data.answer || "I have retrieved your records.",
+          recommendation: data.recommendation || "",
+          suggestions: empFollowUps
+        });
+      } catch (err) {
+        clearTimeout(stepTimer1);
+        clearTimeout(stepTimer2);
+        empChatState.messages.pop();
+        empChatState.messages.push({
+          role: "assistant",
+          answer: "I'm having a little trouble connecting to your personal records at the moment. Please ensure the server is running.",
+          suggestions: [
+            "How many leaves do I have left?",
+            "How is my attendance looking this month?"
+          ]
+        });
+      }
+      renderEmpChatMessages();
+    }
+
+    // Attach chip clicks and Enter key
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".emp-chip").forEach(function (chip) {
+        chip.onclick = function () {
+          submitEmpCopilotMessage(chip.dataset.query);
+        };
+      });
+      var chatInput = document.getElementById("emp-chatbot-input");
+      if (chatInput) {
+        chatInput.onkeypress = function (e) {
+          if (e.key === "Enter") submitEmpCopilotMessage();
+        };
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && empChatState.open) {
+          var el = document.getElementById("fullscreen-chatbot-emp");
+          if (el && el.classList.contains("expanded")) {
+            toggleChatbotExpand("emp");
+          } else {
+            closeEmpChatbot();
+          }
+        }
+      });
+    });
+
+    window.switchEmpTab = switchEmpTab;
+    window.toggleEmpSidebar = toggleEmpSidebar;
+    window.uncollapseEmpSidebar = uncollapseEmpSidebar;
+    window.openEmpChatbot = openEmpChatbot;
+    window.closeEmpChatbot = closeEmpChatbot;
+    window.toggleChatbotExpand = toggleChatbotExpand;
+    window.submitEmpCopilotMessage = submitEmpCopilotMessage;
+  </script>
+
+  <!-- Main Application Controller -->
+  <script type="module" src="/static/js/app.js?v=20261110_v88"></script>
+</body>
+
+</html>

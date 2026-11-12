@@ -1,0 +1,501 @@
+employee_id,department,designation,employment_status,age,tenure_months,is_attrition,absence_rate,remote_rate,unpaid_leave_days,sick_leave_days,onboarding_completion_rate
+E0001,IT,Data Analyst,Active,32.3,55.0,0,0.0544,0.0732,8.0,0.0,1.0
+E0002,IT,Software Engineer,Exited,26.7,5.9,1,0.0078,0.1094,4.0,0.0,1.0
+E0003,HR,HR Manager,Active,27.5,13.5,0,0.0712,0.0814,4.0,0.0,0.8
+E0004,Finance,Financial Analyst,Active,54.5,13.1,0,0.0737,0.0632,0.0,4.0,1.0
+E0005,Customer Support,Support Analyst,Active,41.9,21.7,0,0.0573,0.0849,2.0,8.0,1.0
+E0006,Marketing,Marketing Executive,Active,32.9,59.4,0,0.046,0.0711,5.0,3.0,1.0
+E0007,Operations,Operations Executive,Exited,54.3,29.8,1,0.0595,0.1369,2.0,0.0,1.0
+E0008,Finance,Financial Analyst,Active,49.4,18.8,0,0.0488,0.0659,0.0,0.0,1.0
+E0009,Operations,Operations Manager,Active,51.5,34.0,0,0.0586,0.0879,4.0,4.0,0.8
+E0010,Sales,Account Manager,Active,28.1,7.8,0,0.0471,0.1294,2.0,0.0,0.8
+E0011,Customer Support,Support Executive,Active,46.8,26.3,0,0.0356,0.0983,0.0,2.0,1.0
+E0012,HR,Talent Acquisition Specialist,Active,52.4,61.0,0,0.0418,0.1151,0.0,4.0,0.6
+E0013,HR,HR Analyst,Active,32.7,34.3,0,0.0607,0.0816,11.0,5.0,1.0
+E0014,Finance,Accountant,Active,24.9,16.2,0,0.0367,0.0847,5.0,0.0,1.0
+E0015,Customer Support,Support Executive,Active,32.1,63.6,0,0.0711,0.0858,0.0,0.0,0.6
+E0016,Sales,Sales Manager,Active,28.3,61.4,0,0.0377,0.1151,4.0,7.0,0.8
+E0017,Operations,Operations Manager,Active,39.3,54.5,0,0.0502,0.1046,4.0,0.0,0.6
+E0018,Sales,Sales Executive,Active,36.1,48.7,0,0.0586,0.1046,0.0,5.0,0.8
+E0019,Customer Support,Support Manager,Active,52.0,55.7,0,0.0628,0.0795,6.0,2.0,1.0
+E0020,Customer Support,Support Executive,Active,36.9,19.6,0,0.0561,0.1051,0.0,0.0,1.0
+E0021,IT,Software Engineer,Active,55.0,67.4,0,0.0649,0.113,0.0,0.0,0.6
+E0022,Customer Support,Support Executive,Active,34.2,4.6,0,0.03,0.07,8.0,3.0,1.0
+E0023,Finance,Finance Manager,Active,26.9,47.7,0,0.0586,0.1004,6.0,3.0,1.0
+E0024,Sales,Sales Manager,Active,47.7,28.0,0,0.0628,0.0879,4.0,6.0,0.8
+E0025,IT,QA Engineer,Exited,27.1,36.4,1,0.0517,0.0739,0.0,0.0,0.8
+E0026,HR,HR Executive,Active,28.8,62.0,0,0.0544,0.0816,4.0,3.0,0.8
+E0027,HR,HR Analyst,Active,40.6,4.6,0,0.0495,0.0495,4.0,1.0,0.6
+E0028,IT,Software Engineer,Active,28.6,44.4,0,0.0586,0.0962,0.0,4.0,0.8
+E0029,IT,Senior Developer,Active,52.5,56.7,0,0.046,0.0962,4.0,8.0,1.0
+E0030,HR,Talent Acquisition Specialist,Active,56.6,13.2,0,0.0383,0.0697,0.0,0.0,1.0
+E0031,IT,Senior Developer,Active,51.4,68.0,0,0.0607,0.0816,0.0,8.0,1.0
+E0032,IT,Data Analyst,Active,51.9,19.0,0,0.0702,0.0993,0.0,3.0,1.0
+E0033,Finance,Accountant,Active,56.3,44.4,0,0.0335,0.1025,3.0,0.0,1.0
+E0034,Marketing,Content Specialist,Active,50.5,63.2,0,0.0439,0.0774,0.0,4.0,0.8
+E0035,Marketing,Marketing Executive,Active,32.9,60.7,0,0.0607,0.1046,9.0,13.0,0.8
+E0036,Marketing,Marketing Executive,Active,49.7,64.6,0,0.0502,0.1025,5.0,9.0,0.8
+E0037,HR,Talent Acquisition Specialist,Active,25.1,27.7,0,0.0481,0.1004,5.0,8.0,0.8
+E0038,IT,Data Analyst,Active,36.1,60.2,0,0.0607,0.0879,0.0,11.0,1.0
+E0039,HR,Talent Acquisition Specialist,Active,34.5,34.3,0,0.0607,0.1046,3.0,2.0,0.8
+E0040,Marketing,Marketing Manager,Active,52.8,29.2,0,0.0607,0.0983,0.0,0.0,1.0
+E0041,IT,Software Engineer,Active,26.6,34.4,0,0.0586,0.0983,4.0,5.0,0.8
+E0042,HR,Talent Acquisition Specialist,Active,30.4,23.8,0,0.046,0.0921,6.0,0.0,1.0
+E0043,Customer Support,Support Manager,Exited,25.6,7.6,1,0.0848,0.1091,5.0,3.0,0.8
+E0044,Marketing,Marketing Manager,Active,42.3,10.5,0,0.0304,0.1,0.0,3.0,0.8
+E0045,Sales,Sales Executive,Exited,28.9,40.3,1,0.0336,0.0933,2.0,0.0,1.0
+E0046,Finance,Finance Manager,Active,51.5,56.1,0,0.0628,0.0858,8.0,0.0,1.0
+E0047,Sales,Sales Executive,Active,46.9,46.1,0,0.0586,0.1004,3.0,4.0,1.0
+E0048,Customer Support,Support Manager,Exited,45.1,27.9,1,0.0,0.1786,0.0,4.0,0.8
+E0049,HR,HR Executive,Active,43.1,39.3,0,0.0439,0.113,9.0,5.0,0.8
+E0050,Operations,Operations Manager,Active,32.8,16.2,0,0.071,0.0852,2.0,7.0,1.0
+E0051,IT,Software Engineer,Active,31.6,34.2,0,0.0397,0.0837,8.0,0.0,1.0
+E0052,Sales,Account Manager,Active,42.5,54.4,0,0.046,0.0858,0.0,0.0,0.8
+E0053,IT,QA Engineer,Active,28.9,11.9,0,0.0538,0.0885,6.0,4.0,1.0
+E0054,Finance,Financial Analyst,Active,28.4,15.0,0,0.0214,0.0979,0.0,11.0,0.8
+E0055,Marketing,Marketing Manager,Active,49.4,46.6,0,0.0565,0.0669,4.0,0.0,1.0
+E0056,Customer Support,Support Manager,Active,35.9,12.1,0,0.0755,0.083,2.0,4.0,1.0
+E0057,Customer Support,Support Manager,Active,54.6,6.3,0,0.0511,0.0803,0.0,0.0,0.8
+E0058,Operations,Operations Analyst,Active,37.5,38.3,0,0.0481,0.1109,2.0,0.0,0.6
+E0059,Sales,Account Manager,Active,40.9,60.2,0,0.0356,0.09,8.0,6.0,1.0
+E0060,HR,HR Executive,Active,27.6,37.1,0,0.0628,0.0795,0.0,2.0,1.0
+E0061,IT,IT Manager,Active,25.0,7.5,0,0.0675,0.0552,6.0,4.0,0.8
+E0062,Marketing,Marketing Manager,Active,51.7,10.4,0,0.0308,0.0969,0.0,2.0,1.0
+E0063,Sales,Account Manager,Active,30.7,6.1,0,0.0526,0.0451,0.0,0.0,0.6
+E0064,Finance,Financial Analyst,Exited,52.6,25.4,1,0.0861,0.1005,4.0,4.0,0.8
+E0065,HR,HR Manager,Active,44.0,49.7,0,0.0544,0.0941,0.0,3.0,1.0
+E0066,Sales,Sales Executive,Active,24.5,7.3,0,0.0566,0.0692,4.0,4.0,0.6
+E0067,Sales,Sales Executive,Active,36.9,18.8,0,0.0465,0.0929,4.0,6.0,1.0
+E0068,Finance,Financial Analyst,Active,37.9,40.4,0,0.0418,0.0941,2.0,2.0,1.0
+E0069,Marketing,Marketing Manager,Exited,30.0,44.1,1,0.066,0.1042,14.0,2.0,0.4
+E0070,HR,HR Manager,Active,44.2,12.3,0,0.0522,0.1082,0.0,4.0,1.0
+E0071,Customer Support,Support Analyst,Active,58.0,24.5,0,0.0439,0.0962,6.0,3.0,1.0
+E0072,Finance,Accountant,Active,49.9,62.9,0,0.0523,0.1213,13.0,3.0,0.6
+E0073,Marketing,Marketing Executive,Active,38.0,67.2,0,0.0314,0.0795,4.0,0.0,1.0
+E0074,Customer Support,Support Analyst,Active,44.9,35.5,0,0.0565,0.0774,2.0,8.0,0.8
+E0075,Marketing,Marketing Executive,Active,26.8,55.4,0,0.046,0.0753,4.0,0.0,0.8
+E0076,IT,IT Manager,Active,33.4,43.3,0,0.046,0.1046,0.0,0.0,1.0
+E0077,Finance,Finance Manager,Active,40.0,64.4,0,0.046,0.1109,9.0,4.0,1.0
+E0078,IT,Data Analyst,Active,39.3,4.0,0,0.0227,0.0795,3.0,0.0,1.0
+E0079,Operations,Operations Manager,Active,38.0,46.3,0,0.0502,0.1025,0.0,2.0,0.8
+E0080,Customer Support,Support Manager,Active,38.6,11.3,0,0.0729,0.1012,0.0,10.0,0.8
+E0081,Customer Support,Support Analyst,Active,44.3,37.2,0,0.069,0.09,0.0,0.0,0.8
+E0082,Sales,Sales Executive,Active,33.9,45.5,0,0.0586,0.0941,0.0,4.0,1.0
+E0083,Marketing,Marketing Executive,Exited,29.9,60.3,1,0.0369,0.094,0.0,0.0,0.8
+E0084,Sales,Sales Executive,Exited,37.6,2.4,1,0.0755,0.0943,1.0,4.0,1.0
+E0085,Sales,Sales Manager,Active,47.6,23.7,0,0.0523,0.1088,4.0,4.0,1.0
+E0086,IT,Senior Developer,Active,49.1,38.9,0,0.0523,0.09,3.0,0.0,1.0
+E0087,Finance,Finance Manager,Active,45.5,4.8,0,0.0476,0.0667,0.0,4.0,1.0
+E0088,Finance,Accountant,Active,56.4,39.4,0,0.046,0.0962,0.0,2.0,1.0
+E0089,Operations,Operations Executive,Active,37.8,30.7,0,0.0544,0.1109,4.0,4.0,1.0
+E0090,Sales,Account Manager,Active,55.9,5.6,0,0.0579,0.124,0.0,9.0,1.0
+E0091,Sales,Sales Executive,Active,55.0,16.0,0,0.0657,0.12,6.0,2.0,1.0
+E0092,IT,IT Manager,Active,24.0,36.6,0,0.0879,0.09,3.0,3.0,0.8
+E0093,Sales,Account Manager,Active,31.5,18.8,0,0.0416,0.0758,4.0,6.0,0.8
+E0094,Customer Support,Support Analyst,Active,51.0,56.6,0,0.0628,0.0941,0.0,4.0,0.6
+E0095,HR,HR Executive,Active,48.4,59.9,0,0.0565,0.0837,8.0,0.0,0.8
+E0096,Operations,Operations Analyst,Active,23.5,31.2,0,0.0523,0.0816,6.0,0.0,0.4
+E0097,Sales,Sales Executive,Active,55.6,43.3,0,0.0649,0.0921,0.0,9.0,1.0
+E0098,HR,Talent Acquisition Specialist,Active,37.8,61.9,0,0.0502,0.0816,4.0,12.0,1.0
+E0099,Operations,Operations Analyst,Active,32.0,29.0,0,0.0439,0.0858,1.0,2.0,0.8
+E0100,Sales,Sales Manager,Active,24.5,64.6,0,0.0377,0.1046,6.0,4.0,0.6
+E0101,Marketing,Marketing Executive,Active,50.7,33.7,0,0.0481,0.1025,3.0,0.0,0.8
+E0102,Operations,Operations Analyst,Active,28.8,11.3,0,0.065,0.0976,0.0,4.0,1.0
+E0103,Customer Support,Support Executive,Active,38.4,55.9,0,0.0607,0.0858,3.0,0.0,1.0
+E0104,Finance,Financial Analyst,Active,40.3,58.1,0,0.0481,0.0921,14.0,0.0,0.8
+E0105,HR,Talent Acquisition Specialist,Active,46.9,62.7,0,0.0649,0.0962,0.0,0.0,1.0
+E0106,Finance,Financial Analyst,Active,27.0,52.3,0,0.046,0.0983,0.0,3.0,1.0
+E0107,Finance,Finance Manager,Exited,53.6,40.4,1,0.047,0.0872,4.0,0.0,0.8
+E0108,Sales,Sales Manager,Active,47.9,49.2,0,0.0502,0.0816,0.0,7.0,0.8
+E0109,Marketing,Marketing Executive,Active,46.4,8.5,0,0.0541,0.1081,2.0,3.0,0.8
+E0110,Finance,Finance Manager,Active,52.2,14.1,0,0.0552,0.1006,3.0,0.0,0.4
+E0111,Marketing,Content Specialist,Active,44.4,9.9,0,0.0512,0.0651,0.0,7.0,0.8
+E0112,Operations,Operations Executive,Active,44.6,44.6,0,0.0397,0.1109,0.0,4.0,1.0
+E0113,Operations,Operations Analyst,Active,57.2,6.3,0,0.058,0.1087,2.0,9.0,0.8
+E0114,Marketing,Marketing Manager,Active,35.2,53.0,0,0.0502,0.0816,9.0,2.0,0.8
+E0115,IT,Senior Developer,Active,23.8,8.5,0,0.0649,0.0973,5.0,8.0,0.6
+E0116,Finance,Finance Manager,Active,44.6,34.3,0,0.0481,0.1067,0.0,0.0,0.6
+E0117,Customer Support,Support Manager,Exited,25.3,2.2,1,0.04,0.04,4.0,0.0,1.0
+E0118,Sales,Sales Executive,Active,27.7,57.8,0,0.0481,0.0858,4.0,7.0,0.8
+E0119,IT,Software Engineer,Active,52.3,29.7,0,0.0565,0.0795,5.0,9.0,0.8
+E0120,Marketing,Content Specialist,Active,31.0,37.1,0,0.0397,0.1192,6.0,4.0,1.0
+E0121,Sales,Account Manager,Active,28.9,37.6,0,0.0418,0.1046,3.0,7.0,0.8
+E0122,Customer Support,Support Manager,Active,43.3,68.7,0,0.0607,0.1067,5.0,0.0,1.0
+E0123,Operations,Operations Analyst,Active,37.2,29.7,0,0.046,0.0921,0.0,1.0,1.0
+E0124,Sales,Sales Executive,Active,29.3,55.6,0,0.0544,0.0983,0.0,9.0,1.0
+E0125,Finance,Accountant,Active,46.0,16.7,0,0.0522,0.0714,0.0,0.0,1.0
+E0126,HR,HR Executive,Active,30.7,39.0,0,0.0481,0.1255,0.0,3.0,1.0
+E0127,Finance,Financial Analyst,Exited,25.3,55.0,1,0.0448,0.0784,11.0,4.0,0.8
+E0128,HR,HR Analyst,Exited,47.3,11.0,1,0.0498,0.0954,0.0,3.0,1.0
+E0129,Customer Support,Support Analyst,Active,52.5,5.1,0,0.0446,0.1161,1.0,0.0,0.6
+E0130,Customer Support,Support Manager,Active,54.8,39.6,0,0.0314,0.09,0.0,0.0,1.0
+E0131,IT,QA Engineer,Active,30.2,16.9,0,0.079,0.0981,1.0,5.0,1.0
+E0132,IT,Senior Developer,Active,31.5,20.0,0,0.0598,0.108,0.0,5.0,0.8
+E0133,IT,IT Manager,Active,53.6,40.2,0,0.0586,0.0921,4.0,3.0,1.0
+E0134,IT,Software Engineer,Active,41.4,51.2,0,0.0439,0.1067,1.0,3.0,0.8
+E0135,Finance,Finance Manager,Active,40.2,8.9,0,0.0615,0.0769,7.0,8.0,0.8
+E0136,Customer Support,Support Analyst,Active,38.9,56.6,0,0.046,0.1088,0.0,8.0,1.0
+E0137,HR,Talent Acquisition Specialist,Exited,41.0,7.7,1,0.0417,0.0952,8.0,0.0,1.0
+E0138,HR,HR Executive,Active,56.6,32.8,0,0.0418,0.1067,3.0,2.0,0.8
+E0139,HR,HR Analyst,Active,32.5,25.1,0,0.0628,0.0669,2.0,4.0,1.0
+E0140,Customer Support,Support Executive,Active,46.4,40.9,0,0.0565,0.0941,3.0,6.0,1.0
+E0141,HR,Talent Acquisition Specialist,Active,58.2,50.5,0,0.0439,0.0774,0.0,4.0,0.8
+E0142,Customer Support,Support Executive,Active,25.6,21.7,0,0.0527,0.1118,0.0,7.0,1.0
+E0143,Marketing,Marketing Executive,Active,38.6,13.3,0,0.0552,0.1069,2.0,0.0,1.0
+E0144,HR,HR Executive,Active,38.3,2.2,0,0.0625,0.125,0.0,11.0,1.0
+E0145,IT,Data Analyst,Active,55.5,65.8,0,0.0649,0.0795,0.0,5.0,0.6
+E0146,Finance,Finance Manager,Active,41.7,59.1,0,0.0502,0.0941,3.0,0.0,1.0
+E0147,Sales,Sales Manager,Active,39.5,30.3,0,0.0711,0.0941,6.0,8.0,1.0
+E0148,HR,HR Manager,Active,39.7,9.2,0,0.04,0.105,4.0,5.0,0.4
+E0149,Operations,Operations Analyst,Active,54.7,27.9,0,0.0795,0.1004,3.0,4.0,1.0
+E0150,IT,Data Analyst,Exited,28.8,49.1,1,0.044,0.0769,0.0,0.0,1.0
+E0151,Sales,Account Manager,Active,31.9,53.5,0,0.046,0.1025,0.0,8.0,0.8
+E0152,Finance,Accountant,Active,54.0,27.9,0,0.0523,0.0711,0.0,0.0,0.4
+E0153,Customer Support,Support Executive,Active,31.5,22.8,0,0.0502,0.0983,1.0,0.0,1.0
+E0154,IT,Senior Developer,Active,50.7,34.0,0,0.046,0.0921,0.0,3.0,0.8
+E0155,Marketing,Marketing Manager,Active,25.4,50.7,0,0.0418,0.1109,9.0,2.0,0.8
+E0156,Operations,Operations Manager,Active,56.5,41.0,0,0.0607,0.0962,2.0,4.0,0.8
+E0157,HR,HR Executive,Active,31.6,49.0,0,0.069,0.09,0.0,4.0,1.0
+E0158,Sales,Account Manager,Active,46.1,10.5,0,0.0568,0.0873,5.0,3.0,1.0
+E0159,Marketing,Marketing Manager,Active,58.5,4.5,0,0.051,0.0816,4.0,4.0,1.0
+E0160,Finance,Accountant,Active,36.5,42.4,0,0.0732,0.0879,0.0,5.0,0.8
+E0161,HR,HR Analyst,Active,55.6,12.0,0,0.042,0.1183,0.0,0.0,1.0
+E0162,Customer Support,Support Manager,Exited,33.1,2.3,1,0.1,0.08,1.0,7.0,0.8
+E0163,Operations,Operations Analyst,Active,31.1,15.5,0,0.0442,0.115,10.0,0.0,1.0
+E0164,Customer Support,Support Manager,Active,39.3,8.0,0,0.0457,0.08,9.0,6.0,1.0
+E0165,Marketing,Marketing Executive,Active,23.9,16.1,0,0.0743,0.1029,7.0,6.0,1.0
+E0166,IT,IT Manager,Active,26.2,47.3,0,0.0649,0.0983,5.0,0.0,1.0
+E0167,Finance,Finance Manager,Active,50.9,50.1,0,0.0418,0.0753,0.0,7.0,0.6
+E0168,Sales,Sales Manager,Active,30.7,3.5,0,0.0132,0.1053,2.0,0.0,1.0
+E0169,HR,HR Manager,Exited,43.0,20.3,1,0.0526,0.1053,3.0,6.0,0.8
+E0170,Finance,Financial Analyst,Active,29.9,60.0,0,0.0586,0.0941,0.0,3.0,1.0
+E0171,Marketing,Marketing Manager,Active,33.2,57.8,0,0.0607,0.1067,0.0,4.0,1.0
+E0172,Finance,Finance Manager,Active,43.4,44.6,0,0.0607,0.0941,8.0,0.0,1.0
+E0173,Marketing,Marketing Manager,Active,42.5,58.6,0,0.046,0.1025,3.0,7.0,0.8
+E0174,Finance,Financial Analyst,Active,55.9,19.8,0,0.0372,0.114,6.0,8.0,1.0
+E0175,IT,IT Manager,Active,43.9,25.6,0,0.0586,0.0669,4.0,3.0,0.6
+E0176,Marketing,Marketing Manager,Active,32.1,59.0,0,0.0607,0.1192,2.0,0.0,1.0
+E0177,Operations,Operations Executive,Active,29.9,58.5,0,0.0377,0.1088,4.0,0.0,1.0
+E0178,Marketing,Content Specialist,Exited,50.2,7.2,1,0.0573,0.0701,0.0,4.0,1.0
+E0179,HR,HR Analyst,Exited,29.1,20.9,1,0.0135,0.0946,4.0,3.0,1.0
+E0180,Customer Support,Support Manager,Exited,26.5,15.3,1,0.0399,0.0942,4.0,3.0,0.8
+E0181,IT,Data Analyst,Active,25.1,11.1,0,0.0498,0.1079,4.0,0.0,1.0
+E0182,HR,HR Analyst,Active,28.4,9.6,0,0.0431,0.1148,0.0,3.0,0.6
+E0183,Sales,Account Manager,Active,31.7,10.7,0,0.0558,0.103,4.0,4.0,0.8
+E0184,Customer Support,Support Analyst,Exited,46.0,45.6,1,0.0567,0.1133,5.0,0.0,1.0
+E0185,Customer Support,Support Executive,Active,48.9,58.7,0,0.0481,0.09,0.0,0.0,0.8
+E0186,Finance,Accountant,Active,55.2,9.3,0,0.0495,0.1089,5.0,0.0,1.0
+E0187,HR,HR Manager,Active,52.7,19.5,0,0.0494,0.0894,3.0,8.0,1.0
+E0188,Finance,Financial Analyst,Active,31.2,64.8,0,0.0523,0.0962,10.0,4.0,0.8
+E0189,IT,Software Engineer,Active,53.8,69.3,0,0.0397,0.0607,2.0,0.0,1.0
+E0190,HR,Talent Acquisition Specialist,Exited,56.0,17.2,1,0.0629,0.0457,0.0,0.0,0.8
+E0191,Customer Support,Support Analyst,Active,26.6,55.0,0,0.0565,0.0774,8.0,0.0,1.0
+E0192,Finance,Finance Manager,Exited,35.4,40.5,1,0.0543,0.0736,4.0,4.0,0.6
+E0193,IT,IT Manager,Active,56.9,21.4,0,0.0558,0.0687,5.0,2.0,1.0
+E0194,Finance,Financial Analyst,Active,26.0,17.9,0,0.0615,0.0615,11.0,0.0,0.8
+E0195,Customer Support,Support Executive,Active,30.0,56.0,0,0.0481,0.0795,4.0,5.0,1.0
+E0196,Customer Support,Support Manager,Active,56.0,46.4,0,0.0628,0.0941,0.0,0.0,0.8
+E0197,IT,QA Engineer,Active,35.7,8.4,0,0.0219,0.0984,0.0,8.0,1.0
+E0198,Customer Support,Support Manager,Active,42.8,16.4,0,0.0478,0.0758,10.0,5.0,0.8
+E0199,Customer Support,Support Manager,Active,25.5,63.5,0,0.0628,0.1213,0.0,9.0,0.6
+E0200,Sales,Account Manager,Active,55.1,10.8,0,0.0553,0.0979,4.0,4.0,1.0
+E0201,IT,Data Analyst,Active,55.2,12.8,0,0.0464,0.1,0.0,4.0,0.8
+E0202,Operations,Operations Analyst,Active,43.1,25.8,0,0.0565,0.09,0.0,0.0,0.8
+E0203,IT,QA Engineer,Active,28.7,9.8,0,0.0654,0.1121,3.0,5.0,1.0
+E0204,Finance,Finance Manager,Active,31.6,15.3,0,0.0509,0.1168,2.0,4.0,1.0
+E0205,IT,Senior Developer,Exited,31.7,8.1,1,0.0452,0.0847,13.0,4.0,1.0
+E0206,Operations,Operations Analyst,Active,35.1,49.3,0,0.0544,0.0837,0.0,0.0,1.0
+E0207,Sales,Account Manager,Active,36.4,20.6,0,0.0357,0.1094,0.0,0.0,0.8
+E0208,Marketing,Marketing Executive,Active,27.7,17.9,0,0.0564,0.1026,4.0,0.0,1.0
+E0209,HR,HR Executive,Exited,28.2,2.1,1,0.0217,0.087,1.0,0.0,1.0
+E0210,Operations,Operations Analyst,Active,26.9,26.9,0,0.0397,0.1109,0.0,7.0,1.0
+E0211,Customer Support,Support Analyst,Active,23.4,46.5,0,0.0481,0.0732,12.0,0.0,0.8
+E0212,IT,QA Engineer,Active,31.4,3.5,0,0.0789,0.0789,7.0,2.0,1.0
+E0213,IT,QA Engineer,Active,24.3,58.3,0,0.0607,0.0816,3.0,4.0,1.0
+E0214,Customer Support,Support Manager,Exited,53.1,7.3,1,0.0377,0.0755,2.0,3.0,0.6
+E0215,Customer Support,Support Analyst,Active,45.2,45.5,0,0.0377,0.0879,0.0,5.0,1.0
+E0216,HR,Talent Acquisition Specialist,Active,55.3,47.8,0,0.0607,0.0837,0.0,5.0,1.0
+E0217,HR,Talent Acquisition Specialist,Exited,32.3,24.5,1,0.0493,0.1031,0.0,3.0,1.0
+E0218,HR,Talent Acquisition Specialist,Active,56.8,49.2,0,0.046,0.0628,12.0,2.0,1.0
+E0219,Operations,Operations Executive,Active,30.7,34.3,0,0.0335,0.1004,16.0,0.0,1.0
+E0220,Customer Support,Support Executive,Active,27.9,31.0,0,0.0502,0.1067,0.0,9.0,1.0
+E0221,HR,HR Manager,Active,44.8,61.9,0,0.0377,0.0711,4.0,0.0,0.8
+E0222,Operations,Operations Analyst,Active,44.5,27.0,0,0.0356,0.0983,7.0,4.0,1.0
+E0223,Sales,Sales Executive,Active,41.6,37.4,0,0.0753,0.0816,3.0,0.0,0.8
+E0224,HR,HR Analyst,Active,36.5,13.7,0,0.0569,0.0769,0.0,3.0,0.8
+E0225,Sales,Account Manager,Active,48.0,7.1,0,0.0774,0.0903,3.0,5.0,0.8
+E0226,Marketing,Content Specialist,Exited,34.8,28.5,1,0.0483,0.0918,0.0,0.0,1.0
+E0227,Customer Support,Support Executive,Active,56.8,68.9,0,0.0418,0.0858,7.0,14.0,0.8
+E0228,IT,IT Manager,Active,36.2,16.1,0,0.0686,0.1086,5.0,3.0,1.0
+E0229,Customer Support,Support Manager,Active,54.5,9.4,0,0.039,0.0732,3.0,0.0,1.0
+E0230,Finance,Financial Analyst,Active,36.4,17.0,0,0.0622,0.0676,5.0,8.0,1.0
+E0231,IT,Software Engineer,Exited,44.1,53.8,1,0.0574,0.0697,7.0,2.0,0.8
+E0232,HR,HR Manager,Active,36.1,27.1,0,0.0565,0.0753,0.0,0.0,1.0
+E0233,Operations,Operations Manager,Active,32.6,4.0,0,0.0337,0.0787,2.0,2.0,0.8
+E0234,Customer Support,Support Manager,Active,29.4,28.6,0,0.0272,0.0753,0.0,0.0,0.8
+E0235,Operations,Operations Executive,Active,52.2,39.3,0,0.0502,0.0962,10.0,4.0,1.0
+E0236,IT,IT Manager,Active,40.0,37.4,0,0.0565,0.0753,0.0,2.0,1.0
+E0237,Sales,Sales Manager,Active,27.2,49.6,0,0.0544,0.0649,4.0,0.0,0.8
+E0238,Marketing,Marketing Executive,Active,51.1,51.4,0,0.0481,0.0732,6.0,4.0,1.0
+E0239,Marketing,Content Specialist,Active,50.2,8.1,0,0.0395,0.0847,5.0,0.0,1.0
+E0240,Finance,Finance Manager,Active,44.6,36.8,0,0.0649,0.1067,0.0,3.0,0.8
+E0241,Finance,Finance Manager,Active,41.1,5.4,0,0.0678,0.1017,0.0,5.0,1.0
+E0242,Customer Support,Support Executive,Active,39.0,23.5,0,0.0586,0.0921,0.0,6.0,0.8
+E0243,Operations,Operations Analyst,Active,52.7,35.4,0,0.0439,0.0983,2.0,0.0,0.8
+E0244,Marketing,Marketing Manager,Active,30.2,55.3,0,0.0565,0.0921,3.0,3.0,0.8
+E0245,IT,Data Analyst,Active,34.1,38.6,0,0.0649,0.0837,0.0,0.0,0.8
+E0246,Sales,Sales Manager,Active,44.4,48.7,0,0.0481,0.0753,5.0,19.0,0.8
+E0247,Operations,Operations Executive,Active,51.0,31.5,0,0.0565,0.1004,0.0,0.0,1.0
+E0248,Customer Support,Support Executive,Active,50.5,13.7,0,0.0467,0.1067,4.0,0.0,0.8
+E0249,IT,Software Engineer,Active,38.5,31.0,0,0.0669,0.0983,8.0,5.0,0.8
+E0250,HR,HR Manager,Active,26.6,3.5,0,0.0263,0.0921,0.0,3.0,1.0
+E0251,IT,QA Engineer,Active,31.4,44.9,0,0.0586,0.1213,9.0,0.0,1.0
+E0252,Customer Support,Support Analyst,Active,52.5,15.4,0,0.0448,0.1075,0.0,0.0,1.0
+E0253,Finance,Accountant,Exited,45.3,3.6,1,0.0506,0.0886,0.0,1.0,1.0
+E0254,Finance,Finance Manager,Active,45.1,68.4,0,0.0586,0.0837,7.0,2.0,1.0
+E0255,IT,IT Manager,Active,42.3,48.5,0,0.0544,0.1004,0.0,0.0,1.0
+E0256,Operations,Operations Manager,Active,40.2,40.2,0,0.0544,0.1004,2.0,10.0,1.0
+E0257,Customer Support,Support Manager,Active,35.3,6.6,0,0.0552,0.0966,4.0,8.0,0.8
+E0258,Marketing,Marketing Manager,Active,33.1,9.9,0,0.0791,0.107,0.0,5.0,1.0
+E0259,HR,Talent Acquisition Specialist,Active,54.8,49.8,0,0.0586,0.1025,0.0,4.0,0.8
+E0260,Customer Support,Support Executive,Active,33.8,10.0,0,0.0411,0.105,8.0,7.0,1.0
+E0261,Operations,Operations Analyst,Active,32.9,7.8,0,0.0588,0.1118,4.0,4.0,1.0
+E0262,IT,Data Analyst,Active,37.7,60.1,0,0.0356,0.0962,6.0,2.0,0.6
+E0263,Finance,Financial Analyst,Active,41.7,65.7,0,0.0502,0.0837,0.0,0.0,1.0
+E0264,Customer Support,Support Analyst,Active,29.5,9.6,0,0.0286,0.1238,0.0,2.0,0.8
+E0265,IT,Senior Developer,Active,24.9,23.2,0,0.0356,0.09,0.0,4.0,0.8
+E0266,Finance,Financial Analyst,Active,47.7,66.9,0,0.0607,0.0962,4.0,0.0,1.0
+E0267,Finance,Accountant,Active,31.2,8.0,0,0.0343,0.0914,0.0,0.0,1.0
+E0268,HR,HR Analyst,Exited,25.6,65.9,1,0.0598,0.092,0.0,4.0,1.0
+E0269,Sales,Account Manager,Active,36.2,64.0,0,0.0439,0.1192,5.0,2.0,1.0
+E0270,HR,HR Executive,Active,52.4,31.0,0,0.0418,0.0774,1.0,0.0,0.4
+E0271,Sales,Account Manager,Active,33.9,40.2,0,0.0481,0.1192,7.0,7.0,1.0
+E0272,IT,QA Engineer,Active,27.6,3.3,0,0.0282,0.0845,0.0,3.0,0.8
+E0273,Sales,Sales Executive,Active,48.7,13.9,0,0.0428,0.0724,4.0,0.0,0.6
+E0274,Finance,Finance Manager,Active,40.1,29.5,0,0.0397,0.0962,0.0,2.0,1.0
+E0275,Sales,Sales Executive,Active,54.7,51.9,0,0.0439,0.0879,4.0,8.0,0.8
+E0276,IT,QA Engineer,Active,24.7,44.3,0,0.0586,0.1109,0.0,8.0,1.0
+E0277,Sales,Sales Executive,Active,50.3,40.8,0,0.0565,0.0711,0.0,7.0,1.0
+E0278,Operations,Operations Analyst,Active,48.1,54.2,0,0.0669,0.0837,0.0,3.0,0.6
+E0279,Customer Support,Support Analyst,Active,42.7,26.7,0,0.0628,0.1046,0.0,5.0,0.8
+E0280,Sales,Sales Executive,Active,42.2,3.1,0,0.0746,0.1343,1.0,0.0,1.0
+E0281,Sales,Sales Executive,Active,34.0,27.9,0,0.0397,0.1025,4.0,0.0,0.8
+E0282,Finance,Accountant,Active,34.1,13.8,0,0.05,0.1,0.0,5.0,1.0
+E0283,Finance,Financial Analyst,Active,26.0,24.5,0,0.0523,0.1025,2.0,6.0,1.0
+E0284,HR,HR Analyst,Active,35.3,22.6,0,0.0816,0.0837,2.0,7.0,0.6
+E0285,Customer Support,Support Analyst,Active,52.7,65.4,0,0.0523,0.1046,9.0,0.0,0.8
+E0286,IT,Senior Developer,Exited,29.3,33.9,1,0.0486,0.1,0.0,5.0,0.8
+E0287,IT,Software Engineer,Active,34.8,4.3,0,0.0737,0.0421,3.0,0.0,1.0
+E0288,IT,IT Manager,Active,54.5,31.4,0,0.0439,0.1025,0.0,0.0,0.6
+E0289,HR,HR Analyst,Active,55.3,49.9,0,0.0502,0.09,2.0,5.0,1.0
+E0290,Sales,Account Manager,Active,54.6,19.7,0,0.0674,0.086,0.0,4.0,0.8
+E0291,Sales,Account Manager,Active,36.4,15.4,0,0.0537,0.1164,3.0,1.0,1.0
+E0292,Operations,Operations Analyst,Active,49.3,11.6,0,0.0754,0.0992,0.0,0.0,1.0
+E0293,Finance,Accountant,Active,50.8,6.0,0,0.0615,0.0846,5.0,0.0,1.0
+E0294,IT,Senior Developer,Active,51.5,27.6,0,0.0649,0.0795,5.0,3.0,0.8
+E0295,Marketing,Content Specialist,Active,36.4,37.6,0,0.0732,0.0858,0.0,4.0,0.8
+E0296,IT,Software Engineer,Active,24.1,23.4,0,0.0565,0.0795,3.0,0.0,0.8
+E0297,IT,QA Engineer,Active,39.5,26.1,0,0.046,0.0774,0.0,3.0,0.6
+E0298,Operations,Operations Manager,Active,26.8,45.0,0,0.0523,0.0983,3.0,0.0,1.0
+E0299,IT,QA Engineer,Active,44.6,60.1,0,0.0335,0.1046,3.0,3.0,1.0
+E0300,IT,Software Engineer,Exited,52.9,12.3,1,0.041,0.1045,3.0,4.0,0.8
+E0301,HR,HR Manager,Active,54.8,58.2,0,0.0586,0.0795,6.0,5.0,1.0
+E0302,Marketing,Marketing Executive,Active,40.3,22.3,0,0.0565,0.0711,4.0,3.0,0.6
+E0303,Customer Support,Support Executive,Active,28.1,17.8,0,0.0491,0.093,0.0,3.0,1.0
+E0304,HR,HR Analyst,Active,39.3,18.7,0,0.0637,0.1054,3.0,3.0,1.0
+E0305,Sales,Account Manager,Active,32.2,32.8,0,0.0439,0.0941,0.0,4.0,1.0
+E0306,IT,Data Analyst,Exited,44.0,21.9,1,0.2,0.0,0.0,3.0,1.0
+E0307,Finance,Financial Analyst,Active,44.4,10.7,0,0.0427,0.0812,6.0,7.0,0.6
+E0308,Sales,Account Manager,Active,33.0,42.9,0,0.0607,0.0962,4.0,8.0,0.4
+E0309,Finance,Financial Analyst,Active,32.3,37.4,0,0.0586,0.0732,3.0,0.0,1.0
+E0310,Finance,Finance Manager,Exited,40.5,39.3,1,0.0503,0.1065,0.0,0.0,0.8
+E0311,HR,Talent Acquisition Specialist,Active,23.4,2.8,0,0.0,0.0667,0.0,5.0,0.8
+E0312,IT,Data Analyst,Active,34.4,19.2,0,0.0668,0.0883,7.0,0.0,0.6
+E0313,Customer Support,Support Analyst,Active,24.3,65.0,0,0.0649,0.0879,0.0,0.0,0.8
+E0314,Operations,Operations Manager,Active,25.1,36.6,0,0.0439,0.1004,0.0,2.0,1.0
+E0315,Customer Support,Support Analyst,Exited,38.8,6.7,1,0.0274,0.0959,0.0,3.0,1.0
+E0316,Sales,Account Manager,Active,57.7,19.6,0,0.0585,0.0726,0.0,3.0,0.8
+E0317,IT,QA Engineer,Active,44.8,5.0,0,0.0455,0.0636,4.0,8.0,1.0
+E0318,Sales,Sales Executive,Active,44.5,23.8,0,0.0565,0.1004,9.0,0.0,0.8
+E0319,HR,Talent Acquisition Specialist,Active,28.5,60.9,0,0.0544,0.1004,0.0,2.0,0.8
+E0320,Operations,Operations Executive,Active,38.1,47.8,0,0.0795,0.0649,4.0,0.0,1.0
+E0321,Customer Support,Support Analyst,Active,57.5,38.8,0,0.0774,0.0941,10.0,0.0,0.8
+E0322,Sales,Account Manager,Active,25.1,43.4,0,0.0293,0.1004,7.0,0.0,0.8
+E0323,Marketing,Marketing Manager,Active,38.3,61.5,0,0.0565,0.0858,3.0,6.0,1.0
+E0324,Finance,Finance Manager,Active,31.4,54.6,0,0.0628,0.1151,0.0,6.0,1.0
+E0325,Marketing,Marketing Executive,Active,28.7,17.1,0,0.0642,0.0963,5.0,1.0,0.8
+E0326,Finance,Finance Manager,Active,40.1,51.9,0,0.0628,0.1025,4.0,0.0,1.0
+E0327,Marketing,Content Specialist,Active,36.9,51.4,0,0.0377,0.09,7.0,10.0,0.8
+E0328,HR,HR Analyst,Active,37.1,31.1,0,0.0418,0.0879,8.0,3.0,1.0
+E0329,HR,HR Manager,Active,40.2,51.6,0,0.0586,0.09,0.0,2.0,0.8
+E0330,Sales,Sales Executive,Exited,34.7,2.2,1,0.0,0.0833,1.0,5.0,0.8
+E0331,HR,HR Manager,Active,46.8,31.1,0,0.0397,0.1172,4.0,0.0,0.6
+E0332,Marketing,Marketing Executive,Active,25.8,20.6,0,0.0535,0.0735,0.0,8.0,0.6
+E0333,Finance,Accountant,Active,53.6,36.7,0,0.0502,0.1025,6.0,0.0,0.8
+E0334,HR,Talent Acquisition Specialist,Active,23.6,38.1,0,0.0439,0.1109,9.0,3.0,1.0
+E0335,Customer Support,Support Executive,Active,44.3,42.2,0,0.046,0.0921,8.0,11.0,1.0
+E0336,Finance,Finance Manager,Active,25.2,30.6,0,0.0565,0.069,1.0,3.0,1.0
+E0337,IT,QA Engineer,Active,52.3,14.6,0,0.066,0.0849,0.0,0.0,0.8
+E0338,Customer Support,Support Executive,Active,30.7,26.6,0,0.046,0.1109,4.0,3.0,0.8
+E0339,Sales,Account Manager,Exited,38.4,3.5,1,0.0779,0.0779,4.0,9.0,1.0
+E0340,Finance,Finance Manager,Exited,34.9,2.3,1,0.0385,0.0577,0.0,3.0,1.0
+E0341,HR,HR Manager,Active,34.3,16.4,0,0.0531,0.081,8.0,1.0,0.8
+E0342,Marketing,Content Specialist,Active,30.7,52.4,0,0.046,0.1109,11.0,0.0,1.0
+E0343,IT,Software Engineer,Active,49.8,8.1,0,0.0339,0.1073,0.0,9.0,1.0
+E0344,Operations,Operations Analyst,Active,55.1,52.2,0,0.0628,0.1067,0.0,3.0,0.8
+E0345,Operations,Operations Manager,Active,29.4,19.9,0,0.0599,0.0622,7.0,0.0,0.8
+E0346,Operations,Operations Executive,Exited,58.4,51.8,1,0.0458,0.1146,3.0,4.0,1.0
+E0347,Operations,Operations Analyst,Active,48.6,68.9,0,0.0711,0.0669,4.0,2.0,0.6
+E0348,IT,Software Engineer,Exited,55.8,8.1,1,0.0452,0.1017,13.0,3.0,1.0
+E0349,Finance,Finance Manager,Active,31.2,68.8,0,0.0523,0.0753,0.0,3.0,1.0
+E0350,Customer Support,Support Executive,Exited,43.1,3.6,1,0.075,0.1125,0.0,1.0,1.0
+E0351,Finance,Accountant,Active,23.9,12.2,0,0.0604,0.0792,0.0,2.0,0.8
+E0352,Customer Support,Support Analyst,Active,25.3,66.4,0,0.0523,0.0607,1.0,6.0,1.0
+E0353,Finance,Financial Analyst,Exited,36.4,17.1,1,0.0378,0.1,9.0,9.0,1.0
+E0354,Marketing,Marketing Executive,Active,42.4,60.4,0,0.0586,0.1025,2.0,2.0,1.0
+E0355,Customer Support,Support Analyst,Active,47.1,46.7,0,0.0565,0.1025,0.0,3.0,0.8
+E0356,IT,Software Engineer,Active,39.8,40.9,0,0.0649,0.1109,0.0,0.0,1.0
+E0357,IT,IT Manager,Active,35.9,15.8,0,0.0696,0.1188,0.0,4.0,0.8
+E0358,Finance,Financial Analyst,Active,27.5,42.6,0,0.0607,0.1004,0.0,0.0,1.0
+E0359,Operations,Operations Executive,Exited,45.0,3.4,1,0.0933,0.0667,3.0,4.0,0.8
+E0360,IT,Senior Developer,Active,35.4,46.3,0,0.0523,0.1004,0.0,0.0,0.8
+E0361,HR,Talent Acquisition Specialist,Exited,39.6,22.2,1,0.0455,0.0808,0.0,3.0,1.0
+E0362,Marketing,Marketing Executive,Active,35.9,33.3,0,0.0565,0.0732,0.0,0.0,0.8
+E0363,IT,Data Analyst,Active,33.1,21.5,0,0.062,0.1197,1.0,0.0,1.0
+E0364,HR,HR Executive,Exited,52.1,32.9,1,0.1111,0.0,1.0,0.0,0.8
+E0365,Customer Support,Support Executive,Active,44.4,45.9,0,0.0502,0.0962,0.0,0.0,0.8
+E0366,Sales,Sales Executive,Active,50.8,36.6,0,0.0879,0.0816,4.0,4.0,1.0
+E0367,Customer Support,Support Manager,Active,24.1,39.9,0,0.0502,0.0879,12.0,0.0,1.0
+E0368,HR,Talent Acquisition Specialist,Active,25.7,28.2,0,0.0649,0.0711,4.0,0.0,1.0
+E0369,Sales,Account Manager,Active,52.1,37.3,0,0.0628,0.1004,3.0,0.0,1.0
+E0370,Sales,Sales Executive,Active,58.8,69.1,0,0.0272,0.0753,9.0,0.0,0.8
+E0371,Customer Support,Support Manager,Active,36.8,19.3,0,0.0524,0.1024,0.0,0.0,0.8
+E0372,HR,Talent Acquisition Specialist,Exited,25.3,47.7,1,0.0294,0.1,0.0,7.0,0.6
+E0373,Marketing,Marketing Executive,Active,39.3,58.5,0,0.0607,0.0921,10.0,3.0,1.0
+E0374,HR,Talent Acquisition Specialist,Active,44.6,52.4,0,0.0502,0.1025,0.0,0.0,1.0
+E0375,Finance,Accountant,Exited,51.9,3.6,1,0.0375,0.1625,3.0,4.0,0.6
+E0376,HR,HR Manager,Active,38.6,55.8,0,0.0502,0.1025,5.0,0.0,0.6
+E0377,Sales,Account Manager,Active,49.2,28.5,0,0.0837,0.1025,4.0,3.0,0.8
+E0378,HR,HR Executive,Active,47.2,25.9,0,0.0607,0.0921,0.0,0.0,0.6
+E0379,IT,Data Analyst,Active,38.1,46.6,0,0.0669,0.1004,12.0,3.0,0.8
+E0380,Customer Support,Support Executive,Exited,28.0,36.4,1,0.0435,0.1087,3.0,8.0,0.8
+E0381,Marketing,Marketing Manager,Active,29.9,58.6,0,0.0607,0.0837,2.0,3.0,0.8
+E0382,Customer Support,Support Executive,Exited,51.3,9.1,1,0.0503,0.0854,0.0,9.0,0.6
+E0383,Customer Support,Support Manager,Active,43.0,11.7,0,0.0627,0.0863,3.0,0.0,0.8
+E0384,Customer Support,Support Manager,Active,29.8,41.1,0,0.0523,0.0879,6.0,0.0,1.0
+E0385,Sales,Sales Manager,Active,52.7,30.3,0,0.0544,0.0983,10.0,0.0,0.8
+E0386,HR,HR Analyst,Active,37.3,13.5,0,0.0542,0.0915,7.0,1.0,1.0
+E0387,Finance,Finance Manager,Active,32.0,4.7,0,0.0865,0.0962,7.0,0.0,0.8
+E0388,IT,QA Engineer,Exited,51.7,34.4,1,0.0549,0.1098,0.0,0.0,1.0
+E0389,HR,HR Analyst,Active,42.9,56.5,0,0.0356,0.0879,6.0,0.0,1.0
+E0390,HR,HR Analyst,Active,27.3,46.6,0,0.0544,0.09,9.0,0.0,1.0
+E0391,Marketing,Marketing Manager,Active,51.0,22.6,0,0.0481,0.0941,3.0,7.0,0.6
+E0392,IT,Software Engineer,Exited,44.0,3.2,1,0.0282,0.0704,2.0,11.0,0.6
+E0393,Sales,Sales Manager,Active,57.8,42.8,0,0.0586,0.0879,1.0,4.0,0.8
+E0394,Marketing,Marketing Manager,Active,42.1,50.1,0,0.0544,0.1004,6.0,7.0,0.8
+E0395,Marketing,Marketing Executive,Active,23.3,16.7,0,0.0438,0.1068,4.0,9.0,0.8
+E0396,Operations,Operations Analyst,Active,48.8,4.4,0,0.0208,0.0729,8.0,10.0,0.6
+E0397,Sales,Account Manager,Active,24.3,46.4,0,0.0607,0.1004,3.0,0.0,0.8
+E0398,HR,Talent Acquisition Specialist,Active,36.6,65.6,0,0.0523,0.0879,0.0,5.0,0.8
+E0399,Finance,Finance Manager,Exited,38.8,40.7,1,0.0591,0.0945,1.0,0.0,0.8
+E0400,Finance,Accountant,Active,56.7,68.4,0,0.0523,0.0941,0.0,3.0,1.0
+E0401,Sales,Sales Manager,Active,43.1,18.0,0,0.0483,0.0967,2.0,4.0,1.0
+E0402,IT,QA Engineer,Active,38.6,19.4,0,0.0566,0.0896,2.0,7.0,1.0
+E0403,Customer Support,Support Executive,Active,43.5,60.1,0,0.0293,0.1172,3.0,7.0,0.8
+E0404,Sales,Sales Executive,Active,32.2,47.1,0,0.0649,0.1172,1.0,0.0,0.8
+E0405,Operations,Operations Executive,Active,56.4,5.0,0,0.0273,0.1091,0.0,0.0,0.6
+E0406,Finance,Accountant,Active,29.2,56.3,0,0.0607,0.0816,0.0,3.0,0.6
+E0407,Finance,Accountant,Exited,56.4,23.3,1,0.0729,0.0903,0.0,6.0,1.0
+E0408,IT,Data Analyst,Exited,30.2,18.1,1,0.033,0.1015,3.0,4.0,1.0
+E0409,IT,Data Analyst,Active,29.2,30.7,0,0.0523,0.1234,5.0,0.0,1.0
+E0410,IT,IT Manager,Active,38.8,34.3,0,0.0397,0.0921,5.0,4.0,1.0
+E0411,Finance,Financial Analyst,Active,52.1,64.0,0,0.0544,0.0816,4.0,2.0,1.0
+E0412,IT,QA Engineer,Active,34.0,56.9,0,0.0356,0.1004,0.0,0.0,1.0
+E0413,Customer Support,Support Analyst,Active,37.5,61.8,0,0.0356,0.0732,0.0,0.0,1.0
+E0414,IT,Senior Developer,Active,53.4,29.7,0,0.0523,0.0774,0.0,0.0,1.0
+E0415,HR,HR Analyst,Active,28.2,9.5,0,0.0625,0.125,4.0,5.0,0.6
+E0416,HR,HR Analyst,Active,41.4,11.4,0,0.0121,0.1089,0.0,3.0,1.0
+E0417,Marketing,Content Specialist,Active,53.8,16.5,0,0.0389,0.0917,0.0,12.0,0.8
+E0418,IT,Software Engineer,Active,33.6,14.2,0,0.0484,0.0903,0.0,0.0,0.8
+E0419,Marketing,Marketing Executive,Active,29.5,56.4,0,0.069,0.0941,0.0,0.0,0.8
+E0420,Marketing,Marketing Manager,Active,57.1,4.6,0,0.0495,0.0396,4.0,0.0,1.0
+E0421,Finance,Finance Manager,Active,57.9,16.7,0,0.0687,0.0989,0.0,4.0,1.0
+E0422,Customer Support,Support Analyst,Active,52.8,24.5,0,0.0649,0.0837,5.0,15.0,0.8
+E0423,Operations,Operations Executive,Active,50.4,29.5,0,0.0586,0.0753,0.0,0.0,0.8
+E0424,HR,HR Manager,Active,55.9,10.5,0,0.0391,0.0913,5.0,4.0,0.8
+E0425,Operations,Operations Manager,Active,50.2,28.1,0,0.0523,0.0921,4.0,5.0,1.0
+E0426,Customer Support,Support Executive,Active,46.5,42.9,0,0.0314,0.1067,3.0,0.0,0.8
+E0427,Customer Support,Support Analyst,Active,42.1,20.4,0,0.0449,0.0831,4.0,0.0,1.0
+E0428,Marketing,Content Specialist,Active,51.5,4.2,0,0.011,0.0879,0.0,0.0,1.0
+E0429,Operations,Operations Manager,Exited,48.9,14.1,1,0.0476,0.0476,0.0,5.0,0.8
+E0430,Operations,Operations Executive,Active,52.9,39.7,0,0.0607,0.0586,7.0,5.0,1.0
+E0431,Sales,Account Manager,Active,39.8,46.7,0,0.0607,0.0732,1.0,0.0,1.0
+E0432,Customer Support,Support Analyst,Active,32.6,19.3,0,0.0571,0.0833,4.0,3.0,1.0
+E0433,IT,IT Manager,Active,45.4,56.2,0,0.0544,0.1192,4.0,0.0,1.0
+E0434,Sales,Sales Executive,Active,29.4,55.4,0,0.0565,0.0983,0.0,0.0,0.8
+E0435,HR,HR Analyst,Active,29.2,29.8,0,0.0502,0.069,0.0,4.0,0.8
+E0436,Operations,Operations Executive,Active,40.1,26.9,0,0.0377,0.1151,7.0,0.0,0.6
+E0437,Sales,Sales Manager,Exited,28.0,13.9,1,0.0495,0.0825,0.0,1.0,1.0
+E0438,Operations,Operations Analyst,Active,45.7,5.9,0,0.0615,0.0462,0.0,0.0,0.8
+E0439,Sales,Sales Executive,Active,29.5,56.8,0,0.0586,0.0795,6.0,4.0,0.8
+E0440,HR,Talent Acquisition Specialist,Active,47.1,58.0,0,0.0502,0.0941,6.0,3.0,1.0
+E0441,Sales,Sales Executive,Active,37.7,30.4,0,0.0481,0.0837,2.0,9.0,1.0
+E0442,Marketing,Marketing Executive,Active,52.1,43.8,0,0.0565,0.0795,0.0,0.0,0.6
+E0443,HR,Talent Acquisition Specialist,Active,44.6,51.5,0,0.0439,0.0962,4.0,0.0,1.0
+E0444,Customer Support,Support Executive,Active,58.6,45.7,0,0.0669,0.0921,3.0,0.0,1.0
+E0445,Finance,Accountant,Active,23.6,9.1,0,0.055,0.08,3.0,2.0,0.8
+E0446,HR,HR Manager,Active,58.6,58.1,0,0.0544,0.0858,0.0,3.0,1.0
+E0447,Finance,Financial Analyst,Active,58.0,64.9,0,0.0607,0.1025,3.0,14.0,1.0
+E0448,Operations,Operations Manager,Active,54.2,69.4,0,0.046,0.1213,8.0,3.0,1.0
+E0449,Marketing,Marketing Manager,Active,38.4,18.3,0,0.05,0.09,1.0,3.0,1.0
+E0450,Sales,Sales Manager,Active,25.2,24.5,0,0.0565,0.1004,0.0,5.0,0.8
+E0451,HR,HR Manager,Exited,32.4,30.2,1,0.0488,0.1341,9.0,3.0,1.0
+E0452,HR,HR Executive,Active,30.1,2.1,0,0.0889,0.0889,0.0,0.0,1.0
+E0453,Customer Support,Support Manager,Active,56.7,35.5,0,0.0523,0.0921,5.0,8.0,0.8
+E0454,Marketing,Content Specialist,Active,27.6,54.4,0,0.0523,0.0962,0.0,3.0,0.8
+E0455,Operations,Operations Executive,Active,40.0,68.7,0,0.0544,0.0983,1.0,0.0,0.8
+E0456,Marketing,Marketing Manager,Active,49.9,55.9,0,0.0607,0.0732,1.0,12.0,1.0
+E0457,Customer Support,Support Analyst,Active,51.6,43.1,0,0.0607,0.1025,0.0,3.0,0.8
+E0458,Marketing,Content Specialist,Active,58.7,64.7,0,0.0523,0.0669,13.0,0.0,1.0
+E0459,Operations,Operations Executive,Active,23.9,68.2,0,0.0502,0.1172,4.0,1.0,1.0
+E0460,Operations,Operations Analyst,Exited,38.0,46.5,1,0.0372,0.1064,0.0,0.0,1.0
+E0461,IT,Senior Developer,Active,25.7,63.2,0,0.0439,0.0921,0.0,4.0,1.0
+E0462,Customer Support,Support Executive,Exited,39.2,37.1,1,0.049,0.098,4.0,0.0,0.8
+E0463,Operations,Operations Executive,Active,38.4,33.9,0,0.0586,0.0983,0.0,0.0,0.6
+E0464,Customer Support,Support Analyst,Active,52.9,33.4,0,0.046,0.1234,3.0,3.0,0.8
+E0465,Customer Support,Support Executive,Exited,31.4,60.0,1,0.037,0.1062,8.0,3.0,1.0
+E0466,Customer Support,Support Analyst,Active,36.9,18.9,0,0.0585,0.1146,4.0,4.0,0.8
+E0467,Sales,Account Manager,Exited,28.8,41.6,1,0.0156,0.0833,0.0,4.0,1.0
+E0468,Marketing,Marketing Manager,Active,43.3,24.4,0,0.0523,0.0983,0.0,2.0,1.0
+E0469,HR,HR Executive,Exited,51.4,17.7,1,0.0468,0.1195,0.0,0.0,0.8
+E0470,Customer Support,Support Analyst,Active,34.1,59.9,0,0.0502,0.1172,6.0,9.0,0.8
+E0471,Sales,Sales Executive,Exited,44.7,16.9,1,0.0542,0.0867,0.0,0.0,1.0
+E0472,Sales,Sales Manager,Active,54.8,54.0,0,0.0669,0.1046,10.0,6.0,0.8
+E0473,Marketing,Marketing Manager,Active,56.4,29.0,0,0.0544,0.0837,0.0,2.0,0.8
+E0474,Customer Support,Support Analyst,Active,53.7,40.0,0,0.0628,0.0816,7.0,6.0,1.0
+E0475,Customer Support,Support Manager,Active,27.3,56.8,0,0.046,0.0732,3.0,0.0,0.6
+E0476,IT,Senior Developer,Active,47.4,55.7,0,0.0565,0.0879,4.0,0.0,1.0
+E0477,HR,HR Executive,Active,54.0,43.6,0,0.0481,0.0858,0.0,0.0,1.0
+E0478,IT,IT Manager,Exited,36.5,9.5,1,0.067,0.1005,0.0,4.0,1.0
+E0479,Marketing,Content Specialist,Exited,27.8,62.0,1,0.0692,0.1258,0.0,1.0,1.0
+E0480,Operations,Operations Executive,Exited,40.1,44.8,1,0.0524,0.0774,4.0,3.0,1.0
+E0481,Finance,Financial Analyst,Active,40.3,36.6,0,0.0439,0.0983,7.0,8.0,1.0
+E0482,Customer Support,Support Manager,Active,49.8,29.7,0,0.046,0.0962,1.0,9.0,1.0
+E0483,Marketing,Content Specialist,Active,36.2,41.8,0,0.0335,0.0983,14.0,0.0,1.0
+E0484,Sales,Account Manager,Active,28.6,26.6,0,0.0628,0.0732,9.0,0.0,1.0
+E0485,Customer Support,Support Analyst,Active,56.5,31.5,0,0.046,0.1172,0.0,7.0,1.0
+E0486,HR,Talent Acquisition Specialist,Active,56.0,62.4,0,0.0439,0.069,0.0,4.0,1.0
+E0487,HR,HR Executive,Active,25.5,30.3,0,0.0649,0.0753,0.0,5.0,1.0
+E0488,HR,Talent Acquisition Specialist,Active,23.5,17.6,0,0.0675,0.0935,5.0,4.0,0.8
+E0489,Marketing,Marketing Executive,Exited,30.4,14.4,1,0.0272,0.087,2.0,10.0,0.6
+E0490,Customer Support,Support Manager,Active,38.7,20.5,0,0.0517,0.1011,1.0,0.0,0.8
+E0491,Operations,Operations Executive,Active,57.0,46.1,0,0.0607,0.1067,2.0,3.0,0.8
+E0492,Finance,Finance Manager,Active,44.0,12.3,0,0.056,0.1119,0.0,6.0,0.8
+E0493,Operations,Operations Executive,Exited,36.8,4.7,1,0.0588,0.0686,2.0,0.0,1.0
+E0494,IT,QA Engineer,Active,40.2,21.8,0,0.0505,0.0989,0.0,3.0,1.0
+E0495,IT,QA Engineer,Active,45.7,15.7,0,0.0557,0.1173,1.0,0.0,1.0
+E0496,Customer Support,Support Manager,Active,28.8,40.6,0,0.0565,0.0732,0.0,0.0,0.8
+E0497,Sales,Sales Executive,Active,28.2,23.4,0,0.0628,0.0669,0.0,2.0,1.0
+E0498,Sales,Sales Executive,Active,35.8,26.8,0,0.0544,0.0921,4.0,3.0,0.8
+E0499,Sales,Sales Executive,Active,54.5,10.0,0,0.055,0.1422,0.0,0.0,1.0
+E0500,Customer Support,Support Manager,Active,54.2,47.4,0,0.0565,0.0983,4.0,8.0,1.0
